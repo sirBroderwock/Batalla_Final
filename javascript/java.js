@@ -1,7 +1,7 @@
 let nombre;
 let raza;
 let razaNombre;
-let arma = 0;
+let arma;
 let armaNombre;
 
 nombre = prompt("¡Hola! Cuál es tu nombre?");
@@ -133,11 +133,11 @@ if (arma == 1) {
 
 bienvenida = (valor1, valor2, valor3) => {
   alert(
-    "Bienvenido " +
+    "¡Bienvenido a la aventura " +
       valor1 +
       "!" +
       "\n" +
-      "Tu eres un fantástico " +
+      "Tú eres un fantástico " +
       valor2 +
       "" +
       "\n" +
