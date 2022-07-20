@@ -1,5 +1,5 @@
 let nombre;
-let raza = 0;
+let raza;
 let razaNombre;
 let arma = 0;
 let armaNombre;
@@ -16,21 +16,20 @@ alert(
     "!\n\nPrimero que nada, te haremos unas preguntas para decidir qué tipo de heroe eres.  ¿Bien?  ¡Empezamos!"
 );
 
-raza = parseInt(
-  prompt(
-    "Te encuentras en un bosque mágico.  Estas caminando hacía el dragón, pensando en cómo lo derrotarás." +
-      "\n" +
-      "De pronto, te encuentras una bolsa llena de monedas de oro en medio del camino.  Qué haces?" +
-      "\n\n" +
-      "La dejas en el piso, pues no es tuya: Teclea 1" +
-      "\n\n" +
-      "Te la llevas y en la siguiente aldea te compras una cerveza: Teclea 2." +
-      "\n\n" +
-      "Te la llevas y te compras un caballo para que tu viaje sea más agradable: Teclea 3."
-  )
+raza = prompt(
+  "Te encuentras en un bosque mágico.  Estas caminando hacía el dragón, pensando en cómo lo derrotarás." +
+    "\n" +
+    "De pronto, te encuentras una bolsa llena de monedas de oro en medio del camino.  Qué haces?" +
+    "\n\n" +
+    "La dejas en el piso, pues no es tuya: Teclea #1" +
+    "\n\n" +
+    "Te la llevas y en la siguiente aldea te compras una cerveza: Teclea #2." +
+    "\n\n" +
+    "Te la llevas y te compras un caballo para que tu viaje sea más agradable: Teclea #3."
 );
 
-while (raza != 1 && raza != 2 && raza != 3) {
+if (raza == 1 || raza == 2 || raza == 3) {
+} else {
   alert("Por favor ingresa un número entre el 1 y el 3 para continuar");
   raza = parseInt(
     prompt(
@@ -38,23 +37,38 @@ while (raza != 1 && raza != 2 && raza != 3) {
         "\n" +
         "De pronto, te encuentras una bolsa llena de monedas de oro en medio del camino.  Qué haces?" +
         "\n\n" +
-        "La dejas en el piso, pues no es tuya: Teclea 1" +
+        "La dejas en el piso, pues no es tuya: Teclea #1" +
         "\n\n" +
-        "Te la llevas y en la siguiente aldea te compras una cerveza: Teclea 2." +
+        "Te la llevas y en la siguiente aldea te compras una cerveza: Teclea #2." +
         "\n\n" +
-        "Te la llevas y te compras un caballo para que tu viaje sea más agradable: Teclea 3."
+        "Te la llevas y te compras un caballo para que tu viaje sea más agradable: Teclea #3."
     )
   );
 }
 
-switch (raza) {
-  case 1:
-    razaNombre = "Elfo";
-  case 2:
-    razaNombre = "Enano";
-  case 3:
-    razaNombre = "Humano";
+console.log(raza);
+
+if (raza == 1) {
+  razaNombre = "elfo";
+} else if (raza == 2) {
+  razaNombre = "enano";
+} else {
+  razaNombre = "humano";
 }
+
+// switch (raza) {
+//   case 1:
+//     razaNombre = "elfo";
+//     break;
+//   case 2:
+//     razaNombre = "enano";
+//     break;
+//   case 3:
+//     razaNombre = "humano";
+//     break;
+// }
+
+console.log(razaNombre);
 
 arma = parseInt(
   prompt(
@@ -67,16 +81,17 @@ arma = parseInt(
       "- El bastón mágico - Un arma proveniente de las islas mágicas, este bastón mágico, además de poder lanzar poderes desde una distancia, también tiene el efecto de minimizar el daño mágico que el dragón puede causarte." +
       "\n\n" +
       "¿Cuál escogerás?" +
-      "\n" +
-      "La espada: Teclea 1" +
-      "\n" +
-      "La lanza: Teclea 2" +
-      "\n" +
-      "El bastón mágico: Teclea 3"
+      "\n\n" +
+      "La espada: Teclea #1" +
+      "\n\n" +
+      "La lanza: Teclea #2" +
+      "\n\n" +
+      "El bastón mágico: Teclea #3"
   )
 );
 
-while (arma != 1 && arma != 2 && arma != 3) {
+if (arma == 1 || arma == 2 || arma == 3) {
+} else {
   alert("Por favor ingresa un número entre el 1 y el 3 para continuar");
   arma = parseInt(
     prompt(
@@ -90,23 +105,31 @@ while (arma != 1 && arma != 2 && arma != 3) {
         "\n\n" +
         "¿Cuál escogerás?" +
         "\n" +
-        "La espada: Teclea 1" +
+        "La espada: Teclea #1" +
         "\n" +
-        "La lanza: Teclea 2" +
+        "La lanza: Teclea #2" +
         "\n" +
-        "El bastón mágico: Teclea 3"
+        "El bastón mágico: Teclea #3"
     )
   );
 }
 
-switch (arma) {
-  case 1:
-    armaNombre = "la Espada";
-  case 2:
-    armaNombre = "la Lanza";
-  case 3:
-    armaNombre = "el Bastón Mágico";
+if (arma == 1) {
+  armaNombre = "la espada";
+} else if (arma == 2) {
+  armaNombre = "la lanza";
+} else {
+  armaNombre = "el bastón mágico";
 }
+
+// switch (arma) {
+//   case 1:
+//     armaNombre = "la Espada";
+//   case 2:
+//     armaNombre = "la Lanza";
+//   case 3:
+//     armaNombre = "el Bastón Mágico";
+// }
 
 bienvenida = (valor1, valor2, valor3) => {
   alert(
@@ -116,7 +139,7 @@ bienvenida = (valor1, valor2, valor3) => {
       "\n" +
       "Tu eres un fantástico " +
       valor2 +
-      "," +
+      "" +
       "\n" +
       "y tu arma para dar batalla es " +
       valor3 +
