@@ -231,6 +231,7 @@ const dragon = new enemigo(
 );
 
 console.log(dragon.nombre);
+console.log(dragon.defensa);
 
 alert(
   "De pronto te encuentras con un " +
