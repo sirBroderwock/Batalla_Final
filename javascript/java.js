@@ -141,10 +141,103 @@ bienvenida = (valor1, valor2, valor3) => {
       valor2 +
       "" +
       "\n" +
-      "y tu arma para dar batalla es " +
+      "y tu arma para dar batalla, es " +
       valor3 +
       "."
   );
 };
 
 bienvenida(nombre, razaNombre, armaNombre);
+
+/* Objetos para crear valores de cada raza */
+
+class razaValores {
+  constructor(nombre, hitPoints, mana) {
+    this.nombre = nombre;
+    this.hitPoints = hitPoints;
+    this.mana = mana;
+  }
+}
+
+const elfoValores = new razaValores("elfo", 300, 300);
+const enanoValores = new razaValores("enano", 500, 100);
+const humanoValores = new razaValores("humano", 400, 200);
+
+class armaValores {
+  constuctor(nombre, fuerza, defensa, defensa__Magica) {
+    this.nombre = nombre;
+    this.fuerza = fuerza;
+    this.defensa = defensa;
+    this.defensa__Magica = defensa__Magica;
+  }
+}
+
+let fuerzaRandom = Math.floor(Math.random() * 50);
+let defensaRandom = Math.floor(Math.random() * 30);
+let defensa__Magica__Random = Math.floor(Math.random() * 20);
+let poder__Magico__Random = Math.floor(Math.random() * 50);
+
+const espadaValores = new armaValores(
+  "espada",
+  fuerzaRandom + 18,
+  defensaRandom,
+  defensa__Magica__Random - 5
+);
+const lanzaValores = new armaValores(
+  "lanza",
+  fuerzaRandom + 25,
+  defensaRandom - 5,
+  defensa__Magica__Random - 8
+);
+const bastonValores = new armaValores(
+  "baston mágico",
+  fuerzaRandom + 10,
+  defensaRandom - 10,
+  defensa__Magica__Random + 25
+);
+
+console.log(bastonValores.defensaRandom);
+
+/* Objeto para enemigos y dragons */
+
+class enemigo {
+  constructor(
+    nombre,
+    hitPoints,
+    mana,
+    fuerza,
+    defensa,
+    poderMagico,
+    defensaMagica
+  ) {
+    this.nombre = nombre;
+    this.hitPoints = hitPoints;
+    this.mana = mana;
+    this.fuerza = fuerza;
+    this.defensa = defensa;
+    this.poderMagico = poderMagico;
+    this.defensaMagica = defensaMagica;
+  }
+}
+
+const dragon = new enemigo(
+  "dragon",
+  1500,
+  800,
+  fuerzaRandom + 30,
+  defensaRandom + 30,
+  poder__Magico__Random + 30,
+  defensa__Magica__Random + 20
+);
+
+console.log(dragon.nombre);
+
+alert(
+  "De pronto te encuentras con un " +
+    dragon.nombre +
+    " con " +
+    dragon.hitPoints +
+    " HP de vida.  Además de eso, ves que su poder de batalla es " +
+    dragon.poder__Magico__Random +
+    " y eso, te espanta mucho."
+);
