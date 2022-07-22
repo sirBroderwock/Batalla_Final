@@ -163,8 +163,24 @@ const elfoValores = new razaValores("elfo", 300, 300);
 const enanoValores = new razaValores("enano", 500, 100);
 const humanoValores = new razaValores("humano", 400, 200);
 
+/*Funcion para random Numbers */
+
+randomNumbers = (valor1) => {
+  let randomNumbers__1 = Math.floor(Math.random() * valor1);
+  return randomNumbers__1;
+};
+
+let fuerzaRandom = randomNumbers(50);
+let defensaRandom = randomNumbers(30);
+let defensa__Magica__Random = randomNumbers(20);
+let poder__Magico__Random = randomNumbers(50);
+
+console.log(poder__Magico__Random);
+
+/*Objetos para armas */
+
 class armaValores {
-  constuctor(nombre, fuerza, defensa, defensa__Magica) {
+  constructor(nombre, fuerza, defensa, defensa__Magica) {
     this.nombre = nombre;
     this.fuerza = fuerza;
     this.defensa = defensa;
@@ -172,17 +188,13 @@ class armaValores {
   }
 }
 
-let fuerzaRandom = Math.floor(Math.random() * 50);
-let defensaRandom = Math.floor(Math.random() * 30);
-let defensa__Magica__Random = Math.floor(Math.random() * 20);
-let poder__Magico__Random = Math.floor(Math.random() * 50);
-
 const espadaValores = new armaValores(
   "espada",
   fuerzaRandom + 18,
   defensaRandom,
   defensa__Magica__Random - 5
 );
+
 const lanzaValores = new armaValores(
   "lanza",
   fuerzaRandom + 25,
@@ -195,8 +207,6 @@ const bastonValores = new armaValores(
   defensaRandom - 10,
   defensa__Magica__Random + 25
 );
-
-console.log(bastonValores.defensaRandom);
 
 /* Objeto para enemigos y dragons */
 
@@ -231,7 +241,7 @@ const dragon = new enemigo(
 );
 
 console.log(dragon.nombre);
-console.log(dragon.defensa);
+console.log(dragon.poderMagico);
 
 alert(
   "De pronto te encuentras con un " +
@@ -239,6 +249,6 @@ alert(
     " con " +
     dragon.hitPoints +
     " HP de vida.  Además de eso, ves que su poder de batalla es " +
-    dragon.poder__Magico__Random +
+    dragon.poderMagico +
     " y eso, te espanta mucho."
 );
