@@ -1,20 +1,32 @@
-// let nombre;
-// let raza;
-// let razaNombre;
-// let arma;
-// let armaNombre;
+let nombre;
+let raza;
+let razaNombre;
+let arma;
+let armaNombre;
 
-// nombre = prompt("¡Hola! Cuál es tu nombre?");
-// while (nombre == "") {
-//   alert("Tienes que ingresar tu nombre");
+let botonEmpezar = document.getElementById("botonEmpezar");
+let imagenDragon1 = document.getElementById("imagenDragon1");
+let parrafoEjemplo = document.createElement("p");
+let promptPlace = document.getElementById("promptPlace");
+
+parrafoEjemplo.innerHTML = "Este es un ejemplo de donde irá la información";
+parrafoEjemplo.classList.add("parrafo__styles");
+
+botonEmpezar.onclick = () => {
+  imagenDragon1.remove();
+  promptPlace.appendChild(parrafoEjemplo);
+};
 //   nombre = prompt("¡Hola! Cuál es tu nombre?");
-// }
-
-// alert(
-//   "¡Hola " +
-//     nombre +
-//     "!\n\nPrimero que nada, te haremos unas preguntas para decidir qué tipo de heroe eres.  ¿Bien?  ¡Empezamos!"
-// );
+//   while (nombre == "") {
+//     alert("Tienes que ingresar tu nombre");
+//     nombre = prompt("¡Hola! Cuál es tu nombre?");
+//   }
+//   alert(
+//     "¡Hola " +
+//       nombre +
+//       "!\n\nPrimero que nada, te haremos unas preguntas para decidir qué tipo de heroe eres.  ¿Bien?  ¡Empezamos!"
+//   );
+// ;
 
 // raza = prompt(
 //   "Te encuentras en un bosque mágico.  Estas caminando hacía el dragón, pensando en cómo lo derrotarás." +
