@@ -3,19 +3,65 @@ let raza;
 let razaNombre;
 let arma;
 let armaNombre;
-
 let botonEmpezar = document.getElementById("botonEmpezar");
 let imagenDragon1 = document.getElementById("imagenDragon1");
-let parrafoEjemplo = document.createElement("p");
 let promptPlace = document.getElementById("promptPlace");
 
-parrafoEjemplo.innerHTML = "Este es un ejemplo de donde irá la información";
-parrafoEjemplo.classList.add("parrafo__styles");
+//Form para nombre
+
+let nombreEmpezar = document.createElement("p");
+nombreEmpezar.innerHTML =
+  "Antes de empezar, por favor dinos cómo te quieres llamar.";
+nombreEmpezar.classList.add("parrafoEmpezar");
+let nombreForm = document.createElement("input");
+nombreForm.classList = "form-control form-control-lg";
+nombreForm.type = "text";
+nombreForm.placeholder = "Tu nombre poderoso aquí";
+nombreForm.ariaLabel = "Tu nombre aquí";
+nombreForm.id = "resultadoNombre";
+let resultadoNombre = document.getElementById("resultadoNombre");
+
+// if (resultadoNombre != "") {
+//   const resultadoNombreStorage = JSON.stringify(resultadoNombre).value;
+// }
+
+//Botones para Continuar y Empezar de Nuevo
+
+let botonContinuar = document.createElement("button");
+botonContinuar.classList.add("btn", "btn-secondary", "btn-large");
+botonContinuar.innerHTML = "Continuar";
+
+let botonReiniciar = document.createElement("button");
+botonReiniciar.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
+botonReiniciar.innerHTML = "Reiniciar";
+
+function agregarBotones() {
+  botonEmpezar.remove();
+  botones.appendChild(botonContinuar);
+  botones.appendChild(botonReiniciar);
+  botones.classList.remove("col");
+  botones.classList.add("col-10", "mx-auto");
+}
+
+//Evento para boton de Empezar
 
 botonEmpezar.onclick = () => {
   imagenDragon1.remove();
-  promptPlace.appendChild(parrafoEjemplo);
+  tituloPrimero.innerHTML = "Bienvenido a la Batalla Final";
+  promptPlace.classList.remove("col-4");
+  promptPlace.classList.add("col-10", "justify-content-center");
+  promptPlace.appendChild(nombreEmpezar);
+  promptPlace.appendChild(nombreForm);
+  agregarBotones();
 };
+
+botonContinuar.onclick = () => {
+  nombreEmpezar.remove();
+  const resultadoNombreStorage = JSON.stringify(resultadoNombre).value;
+};
+
+let hola = (document.createElement = "p");
+
 //   nombre = prompt("¡Hola! Cuál es tu nombre?");
 //   while (nombre == "") {
 //     alert("Tienes que ingresar tu nombre");
