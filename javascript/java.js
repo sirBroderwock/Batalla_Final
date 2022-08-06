@@ -19,7 +19,6 @@ nombreForm.type = "text";
 nombreForm.placeholder = "Tu nombre poderoso aquí";
 nombreForm.ariaLabel = "Tu nombre aquí";
 nombreForm.id = "resultadoNombre";
-let resultadoNombre = document.getElementById("resultadoNombre");
 
 // if (resultadoNombre != "") {
 //   const resultadoNombreStorage = JSON.stringify(resultadoNombre).value;
@@ -56,11 +55,15 @@ botonEmpezar.onclick = () => {
 };
 
 botonContinuar.onclick = () => {
+  while (document.getElementById(resultadoNombre) == "") {
+    alert("Tienes que ingresar tu nombre");
+  }
   nombreEmpezar.remove();
   const resultadoNombreStorage = JSON.stringify(resultadoNombre).value;
 };
 
 let hola = (document.createElement = "p");
+hola.innerHTML = "Bienvenido";
 
 //   nombre = prompt("¡Hola! Cuál es tu nombre?");
 //   while (nombre == "") {
