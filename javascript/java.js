@@ -42,6 +42,13 @@ function agregarBotones() {
   botones.classList.add("col-10", "mx-auto");
 }
 
+//Boton Reset
+function reload() {
+  reload = location.reload();
+}
+
+botonReiniciar.addEventListener("click", reload, false);
+
 //Evento para boton de Empezar
 
 botonEmpezar.onclick = () => {
@@ -53,6 +60,8 @@ botonEmpezar.onclick = () => {
   promptPlace.appendChild(nombreForm);
   agregarBotones();
 };
+
+// while se puede confirmar con el json del value.  pon eso primero
 
 botonContinuar.onclick = () => {
   while (document.getElementById(resultadoNombre) == "") {
