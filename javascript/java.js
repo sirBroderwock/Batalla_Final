@@ -7,28 +7,17 @@ let botonEmpezar = document.getElementById("botonEmpezar");
 let imagenDragon1 = document.getElementById("imagenDragon1");
 let promptPlace = document.getElementById("promptPlace");
 
-//Form para nombre
 
-let nombreEmpezar = document.createElement("p");
-nombreEmpezar.innerHTML =
-  "Antes de empezar, por favor dinos cómo te quieres llamar.";
-nombreEmpezar.classList.add("parrafoEmpezar");
-let nombreForm = document.createElement("input");
-nombreForm.classList = "form-control form-control-lg";
-nombreForm.type = "text";
-nombreForm.placeholder = "Tu nombre poderoso aquí";
-nombreForm.ariaLabel = "Tu nombre aquí";
-nombreForm.id = "resultadoNombre";
 
 
 //Botones para Continuar y Empezar de Nuevo
 
-let botonContinuar = document.createElement("button");
+const botonContinuar = document.createElement("button");
 botonContinuar.classList.add("btn", "btn-secondary", "btn-large");
 botonContinuar.innerHTML = "Continuar";
 botonContinuar.id = "botonContinuar";
 
-let botonReiniciar = document.createElement("button");
+const botonReiniciar = document.createElement("button");
 botonReiniciar.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
 botonReiniciar.innerHTML = "Reiniciar";
 botonReiniciar.id = "botonReiniciar";
@@ -41,9 +30,32 @@ function agregarBotones() {
   botones.classList.add("col-10", "mx-auto");
 }
 
-//Boton Reset
+//Boton Continuar
+
+function botonContinuar__Funcion() {
+  while (nombreForm == "") {
+    alert("Tienes que ingresar tu nombre");
+    console.log("What?");
+  }
+}
+
+botonContinuar.addEventListener("click", botonContinuar__Funcion());
+
+//Botones Reset
 function reload() {
   reload = location.reload();
+}
+
+function botonReiniciar__Empezar() {
+  alerta.appendChild(botonReiniciar__P);
+  alerta.appendChild(botonReiniciar__Si);
+  alerta.appendChild(botonReiniciar__No);
+}
+
+function botonReiniciar__No__Remove() {
+  alerta.removeChild(botonReiniciar__P);
+  alerta.removeChild(botonReiniciar__Si);
+  alerta.removeChild(botonReiniciar__No);
 }
 
 let botonReiniciar__Si = document.createElement("button");
@@ -52,16 +64,19 @@ botonReiniciar__Si.innerHTML = "Si";
 botonReiniciar__Si.id = "botonReiniciar__Si";
 
 let botonReiniciar__No = document.createElement("button");
-botonReiniciar.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
-botonReiniciar.innerHTML = "No";
-botonReiniciar.id = "botonReiniciar__No";
+botonReiniciar__No.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
+botonReiniciar__No.innerHTML = "No";
+botonReiniciar__No.id = "botonReiniciar__No";
 
-botonReiniciar.onclick = () => {
-  document.getElementById("alerta").classList.add("danger");
-  document.getElementById("alerta").innerHTML("¿Estas seguro de que quieres empezar de nuevo?")
-  alert.appendChild(botonReiniciar__Si)
+let botonReiniciar__P = document.createElement("p");
+botonReiniciar__P.innerHTML = ("¿Estas seguro de que quieres empezar de nuevo?");
+
+botonReiniciar.addEventListener("click", botonReiniciar__Empezar);
+
+botonReiniciar__Si.addEventListener("click", reload);
+botonReiniciar__No.onclick = () => {
+  botonReiniciar__No__Remove();
 }
-botonReiniciar.addEventListener("click", reload);
 
 //Evento para boton de Empezar
 
@@ -70,27 +85,27 @@ botonEmpezar.onclick = () => {
   tituloPrimero.innerHTML = "Bienvenido a la Batalla Final";
   promptPlace.classList.remove("col-4");
   promptPlace.classList.add("col-10", "justify-content-center");
-  promptPlace.appendChild(nombreEmpezar);
+  promptPlace.appendChild(nombreEmpezar__Titulo);
   promptPlace.appendChild(nombreForm);
   agregarBotones();
-};
+  
+}
+
+//Form para nombre
+
+let nombreEmpezar__Titulo = document.createElement("p");
+nombreEmpezar__Titulo.innerHTML =
+  "Antes de empezar, por favor dinos cómo te quieres llamar.";
+nombreEmpezar__Titulo.classList.add("parrafoEmpezar");
+
+let nombreForm = document.createElement("input");
+nombreForm.classList = "form-control form-control-lg";
+nombreForm.type = "text";
+nombreForm.placeholder = "Tu nombre poderoso aquí";
+nombreForm.ariaLabel = "Tu nombre aquí";
+nombreForm.id = "nombreForm";
 
 // while se puede confirmar con el json del value.  pon eso primero
-
-
-
-botonContinuar.onclick = () => {
-  if (document.getElementById(resultadoNombre) == "") {
-    alert("Tienes que ingresar tu nombre");
-  } else {
-
-  }
-  nombreEmpezar.remove();
-  const resultadoNombreStorage = JSON.stringify(resultadoNombre).value;
-};
-
-let hola = (document.createElement = "p");
-hola.innerHTML = "Bienvenido";
 
 //   nombre = prompt("¡Hola! Cuál es tu nombre?");
 //   while (nombre == "") {
