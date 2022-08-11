@@ -114,7 +114,7 @@ botonContinuar.onclick = () => {
   }
 }
 
-
+//asdfdds
 // while se puede confirmar con el json del value.  pon eso primero
 
 //   nombre = prompt("¡Hola! Cuál es tu nombre?");
