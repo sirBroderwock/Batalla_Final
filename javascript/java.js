@@ -28,18 +28,9 @@ function agregarBotones() {
   botones.appendChild(botonReiniciar);
   botones.classList.remove("col");
   botones.classList.add("col-10", "mx-auto");
+
 }
 
-//Boton Continuar
-
-function botonContinuar__Funcion() {
-  while (nombreForm == "") {
-    alert("Tienes que ingresar tu nombre");
-    console.log("What?");
-  }
-}
-
-botonContinuar.addEventListener("click", botonContinuar__Funcion());
 
 //Botones Reset
 function reload() {
@@ -78,6 +69,18 @@ botonReiniciar__No.onclick = () => {
   botonReiniciar__No__Remove();
 }
 
+ //Boton Continuar
+
+  let alertaNombre__P = document.createElement("p");
+  alertaNombre__P.classList.add("danger");
+  alertaNombre__P.innerHTML = "Porfavor ingresa tu nombre";
+
+  function botonContinuar__Funcion() {
+      console.log("What?");
+    
+  }
+  
+
 //Evento para boton de Empezar
 
 botonEmpezar.onclick = () => {
@@ -88,7 +91,6 @@ botonEmpezar.onclick = () => {
   promptPlace.appendChild(nombreEmpezar__Titulo);
   promptPlace.appendChild(nombreForm);
   agregarBotones();
-  
 }
 
 //Form para nombre
@@ -104,6 +106,14 @@ nombreForm.type = "text";
 nombreForm.placeholder = "Tu nombre poderoso aquí";
 nombreForm.ariaLabel = "Tu nombre aquí";
 nombreForm.id = "nombreForm";
+
+botonContinuar.onclick = () => {
+  console.log("What");
+  if (nombreForm == "") {
+    alert("Porfavor ingresa tu nombre");
+  }
+}
+
 
 // while se puede confirmar con el json del value.  pon eso primero
 
