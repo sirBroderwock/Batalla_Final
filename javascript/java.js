@@ -20,19 +20,18 @@ nombreForm.placeholder = "Tu nombre poderoso aquí";
 nombreForm.ariaLabel = "Tu nombre aquí";
 nombreForm.id = "resultadoNombre";
 
-// if (resultadoNombre != "") {
-//   const resultadoNombreStorage = JSON.stringify(resultadoNombre).value;
-// }
 
 //Botones para Continuar y Empezar de Nuevo
 
 let botonContinuar = document.createElement("button");
 botonContinuar.classList.add("btn", "btn-secondary", "btn-large");
 botonContinuar.innerHTML = "Continuar";
+botonContinuar.id = "botonContinuar";
 
 let botonReiniciar = document.createElement("button");
 botonReiniciar.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
 botonReiniciar.innerHTML = "Reiniciar";
+botonReiniciar.id = "botonReiniciar";
 
 function agregarBotones() {
   botonEmpezar.remove();
@@ -47,7 +46,22 @@ function reload() {
   reload = location.reload();
 }
 
-botonReiniciar.addEventListener("click", reload, false);
+let botonReiniciar__Si = document.createElement("button");
+botonReiniciar__Si.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
+botonReiniciar__Si.innerHTML = "Si";
+botonReiniciar__Si.id = "botonReiniciar__Si";
+
+let botonReiniciar__No = document.createElement("button");
+botonReiniciar.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
+botonReiniciar.innerHTML = "No";
+botonReiniciar.id = "botonReiniciar__No";
+
+botonReiniciar.onclick = () => {
+  document.getElementById("alerta").classList.add("danger");
+  document.getElementById("alerta").innerHTML("¿Estas seguro de que quieres empezar de nuevo?")
+  alert.appendChild(botonReiniciar__Si)
+}
+botonReiniciar.addEventListener("click", reload);
 
 //Evento para boton de Empezar
 
@@ -63,9 +77,13 @@ botonEmpezar.onclick = () => {
 
 // while se puede confirmar con el json del value.  pon eso primero
 
+
+
 botonContinuar.onclick = () => {
-  while (document.getElementById(resultadoNombre) == "") {
+  if (document.getElementById(resultadoNombre) == "") {
     alert("Tienes que ingresar tu nombre");
+  } else {
+
   }
   nombreEmpezar.remove();
   const resultadoNombreStorage = JSON.stringify(resultadoNombre).value;
