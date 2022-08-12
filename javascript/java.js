@@ -8,7 +8,7 @@ let imagenDragon1 = document.getElementById("imagenDragon1");
 let promptPlace = document.getElementById("promptPlace");
 let botones = document.getElementById("botones");
 
-//Form para nombre
+//Form para nombre con botones Continuar y Reiniciar
 
 let nombreForm = document.createElement("form");
 
@@ -25,6 +25,33 @@ nombreForm__Input.placeholder = "Tu nombre poderoso aquí";
 nombreForm__Input.ariaLabel = "Tu nombre aquí";
 nombreForm__Input.id = "nombreForm";
 
+let grupoBotones = document.createElement("div");
+grupoBotones.classList.add("mt-4", "col-10", "mx-auto");
+
+
+let botonContinuar = document.createElement("button");
+botonContinuar.classList.add("btn", "btn-secondary", "btn-large");
+botonContinuar.type = "button";
+botonContinuar.innerHTML = "Continuar";
+botonContinuar.id = "botonContinuar";
+
+let botonReiniciar = document.createElement("button");
+botonReiniciar.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
+botonReiniciar.type = "button";
+botonReiniciar.innerHTML = "Reiniciar";
+botonReiniciar.id = "botonReiniciar";
+
+nombreForm.appendChild(nombreForm__Label);
+nombreForm.appendChild(nombreForm__Input);
+
+grupoBotones.appendChild(botonContinuar);
+grupoBotones.appendChild(botonReiniciar);
+
+function agregarBotones() {
+  botones.remove();
+  nombreForm.appendChild(grupoBotones);
+}
+
 //Evento para boton de Empezar
 
 botonEmpezar.onclick = () => {
@@ -33,34 +60,13 @@ botonEmpezar.onclick = () => {
   promptPlace.classList.remove("col-4");
   promptPlace.classList.add("col-10", "justify-content-center");
   promptPlace.appendChild(nombreForm);
-  nombreForm.appendChild(nombreForm__Label);
-  nombreForm.appendChild(nombreForm__Input);
   agregarBotones();
 };
 
-//Botones para Continuar y Empezar de Nuevo
-
-let grupoBotones = document.createElement("div");
-grupoBotones.classList.add("mt-4", "col-10", "mx-auto");
-
-let botonContinuar = document.createElement("button");
-botonContinuar.classList.add("btn", "btn-secondary", "btn-large");
-botonContinuar.type = "submit";
-botonContinuar.innerHTML = "Continuar";
-botonContinuar.id = "botonContinuar";
-
-let botonReiniciar = document.createElement("button");
-botonReiniciar.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
-botonReiniciar.innerHTML = "Reiniciar";
-botonReiniciar.id = "botonReiniciar";
-
-function agregarBotones() {
-  botones.remove();
-  nombreForm.appendChild(grupoBotones);
-
-  grupoBotones.appendChild(botonContinuar);
-  grupoBotones.appendChild(botonReiniciar);
-}
+botonContinuar.addEventListener("click", botonContinuar__Submit =>  {
+  console.log("hola");
+})
+  
 
 //Botones Reset
 
@@ -85,6 +91,7 @@ botonReiniciar__Si.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
 botonReiniciar__Si.innerHTML = "Si";
 botonReiniciar__Si.id = "botonReiniciar__Si";
 
+
 let botonReiniciar__No = document.createElement("button");
 botonReiniciar__No.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
 botonReiniciar__No.innerHTML = "No";
@@ -93,9 +100,9 @@ botonReiniciar__No.id = "botonReiniciar__No";
 let botonReiniciar__P = document.createElement("p");
 botonReiniciar__P.innerHTML = "¿Estas seguro de que quieres empezar de nuevo?";
 
-botonReiniciar.addEventListener("click", botonReiniciar__Empezar);
+botonReiniciar.addEventListener("click", botonReiniciar__Empezar, false);
 
-botonReiniciar__Si.addEventListener("click", reload);
+botonReiniciar__Si.addEventListener("click", reload, false);
 botonReiniciar__No.onclick = () => {
   botonReiniciar__No__Remove();
 };
