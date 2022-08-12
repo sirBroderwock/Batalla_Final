@@ -6,33 +6,64 @@ let armaNombre;
 let botonEmpezar = document.getElementById("botonEmpezar");
 let imagenDragon1 = document.getElementById("imagenDragon1");
 let promptPlace = document.getElementById("promptPlace");
+let botones = document.getElementById("botones");
 
+//Form para nombre
 
+let nombreForm = document.createElement("form");
 
+let nombreForm__Label = document.createElement("label");
+nombreForm__Label.for = "nombreForm__Input";
+nombreForm__Label.classList.add("form-label");
+nombreForm__Label.innerHTML =
+  "Antes de empezar, por favor dinos cómo te quieres llamar.";
+
+let nombreForm__Input = document.createElement("input");
+nombreForm__Input.classList = "form-control form-control-lg";
+nombreForm__Input.type = "text";
+nombreForm__Input.placeholder = "Tu nombre poderoso aquí";
+nombreForm__Input.ariaLabel = "Tu nombre aquí";
+nombreForm__Input.id = "nombreForm";
+
+//Evento para boton de Empezar
+
+botonEmpezar.onclick = () => {
+  imagenDragon1.remove();
+  tituloPrimero.innerHTML = "Bienvenido a la Batalla Final";
+  promptPlace.classList.remove("col-4");
+  promptPlace.classList.add("col-10", "justify-content-center");
+  promptPlace.appendChild(nombreForm);
+  nombreForm.appendChild(nombreForm__Label);
+  nombreForm.appendChild(nombreForm__Input);
+  agregarBotones();
+};
 
 //Botones para Continuar y Empezar de Nuevo
 
-const botonContinuar = document.createElement("button");
+let grupoBotones = document.createElement("div");
+grupoBotones.classList.add("mt-4", "col-10", "mx-auto");
+
+let botonContinuar = document.createElement("button");
 botonContinuar.classList.add("btn", "btn-secondary", "btn-large");
+botonContinuar.type = "submit";
 botonContinuar.innerHTML = "Continuar";
 botonContinuar.id = "botonContinuar";
 
-const botonReiniciar = document.createElement("button");
+let botonReiniciar = document.createElement("button");
 botonReiniciar.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
 botonReiniciar.innerHTML = "Reiniciar";
 botonReiniciar.id = "botonReiniciar";
 
 function agregarBotones() {
-  botonEmpezar.remove();
-  botones.appendChild(botonContinuar);
-  botones.appendChild(botonReiniciar);
-  botones.classList.remove("col");
-  botones.classList.add("col-10", "mx-auto");
+  botones.remove();
+  nombreForm.appendChild(grupoBotones);
 
+  grupoBotones.appendChild(botonContinuar);
+  grupoBotones.appendChild(botonReiniciar);
 }
 
-
 //Botones Reset
+
 function reload() {
   reload = location.reload();
 }
@@ -60,59 +91,24 @@ botonReiniciar__No.innerHTML = "No";
 botonReiniciar__No.id = "botonReiniciar__No";
 
 let botonReiniciar__P = document.createElement("p");
-botonReiniciar__P.innerHTML = ("¿Estas seguro de que quieres empezar de nuevo?");
+botonReiniciar__P.innerHTML = "¿Estas seguro de que quieres empezar de nuevo?";
 
 botonReiniciar.addEventListener("click", botonReiniciar__Empezar);
 
 botonReiniciar__Si.addEventListener("click", reload);
 botonReiniciar__No.onclick = () => {
   botonReiniciar__No__Remove();
-}
+};
 
- //Boton Continuar
+//Boton Continuar
 
-  let alertaNombre__P = document.createElement("p");
-  alertaNombre__P.classList.add("danger");
-  alertaNombre__P.innerHTML = "Porfavor ingresa tu nombre";
+// let alertaNombre__P = document.createElement("p");
+// alertaNombre__P.classList.add("danger");
+// alertaNombre__P.innerHTML = "Porfavor ingresa tu nombre";
 
-  function botonContinuar__Funcion() {
-      console.log("What?");
-    
-  }
-  
-
-//Evento para boton de Empezar
-
-botonEmpezar.onclick = () => {
-  imagenDragon1.remove();
-  tituloPrimero.innerHTML = "Bienvenido a la Batalla Final";
-  promptPlace.classList.remove("col-4");
-  promptPlace.classList.add("col-10", "justify-content-center");
-  promptPlace.appendChild(nombreEmpezar__Titulo);
-  promptPlace.appendChild(nombreForm);
-  agregarBotones();
-}
-
-//Form para nombre
-
-let nombreEmpezar__Titulo = document.createElement("p");
-nombreEmpezar__Titulo.innerHTML =
-  "Antes de empezar, por favor dinos cómo te quieres llamar.";
-nombreEmpezar__Titulo.classList.add("parrafoEmpezar");
-
-let nombreForm = document.createElement("input");
-nombreForm.classList = "form-control form-control-lg";
-nombreForm.type = "text";
-nombreForm.placeholder = "Tu nombre poderoso aquí";
-nombreForm.ariaLabel = "Tu nombre aquí";
-nombreForm.id = "nombreForm";
-
-botonContinuar.onclick = () => {
-  console.log("What");
-  if (nombreForm == "") {
-    alert("Porfavor ingresa tu nombre");
-  }
-}
+// function botonContinuar__Funcion() {
+//   console.log("What?");
+// }
 
 //asdfdds
 // while se puede confirmar con el json del value.  pon eso primero
