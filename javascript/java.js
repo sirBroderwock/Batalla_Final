@@ -104,13 +104,14 @@ botonReiniciar__Si.addEventListener("click", reload, false);
 botonReiniciar__No.onclick = () => {
   botonReiniciar__No__Remove();
 };
-let heroe = [];
 
+let heroe = [];
 
 function alerta__Remove() {
   alerta__p.innerHTML = "";
   alerta__p.classList.remove("alerta__colores");
 };
+
 
 //Boton Continuar
 
@@ -129,6 +130,35 @@ botonReiniciar__No__Remove();
     };
    }
 })
+
+//Cards para Raza 
+
+let razaForm = creatElement("div");
+
+let razaForm__P = createElement("p");
+razaForm__P.innerHtml = ("¡Hola" + heroe.nombre + "Antes de empezar la batalla, te haremos unas preguntas para decidir qué tipo de heroe eres.  ¿Bien?  ¡Empecemos!");
+
+let razaForm__P2 = createElement("p");
+razaForm__P2.innerHTML = ("Te encuentras en un bosque mágico.  Estas caminando tranquilamente, pensando en cómo derrotarás tus enemigos." +
+"<br>" +
+"De pronto, te encuentras con una bolsa llena de monedas de oro en medio del camino." +
+"<br>" +
+"¿Qué haces con ella?" );
+
+let razaForm__CardPlace = createElement("div");
+
+let razaForm__Card = createElement("div");
+
+let razaForm__Card__Elfo = razaForm__Card;
+let razaForm__Card__Enano = razaForm__Card;
+let razaForm__Card__Humano = razaForm__Card;
+
+
+//Funcion Raza - Quitar boton Continuar, mover boton Reiniciar y agregar Raza Cards
+
+function razaForm__Function() {
+nombreForm.remove;
+};
 
 //   nombre = prompt("¡Hola! Cuál es tu nombre?");
 //   while (nombre == "") {
