@@ -8,9 +8,11 @@ let imagenDragon1 = document.getElementById("imagenDragon1");
 let promptPlace = document.getElementById("promptPlace");
 let botones = document.getElementById("botones");
 
+
+
 //Form para nombre con botones Continuar y Reiniciar
 
-let nombreForm = document.createElement("form");
+let nombreForm = document.createElement("div");
 
 let nombreForm__Label = document.createElement("label");
 nombreForm__Label.for = "nombreForm__Input";
@@ -23,11 +25,10 @@ nombreForm__Input.classList = "form-control form-control-lg";
 nombreForm__Input.type = "text";
 nombreForm__Input.placeholder = "Tu nombre poderoso aquí";
 nombreForm__Input.ariaLabel = "Tu nombre aquí";
-nombreForm__Input.id = "nombreForm";
+nombreForm__Input.id = "nombreForm__Input";
 
 let grupoBotones = document.createElement("div");
-grupoBotones.classList.add("mt-4", "col-10", "mx-auto");
-
+grupoBotones.classList.add("col-10", "mx-auto");
 
 let botonContinuar = document.createElement("button");
 botonContinuar.classList.add("btn", "btn-secondary", "btn-large");
@@ -48,8 +49,8 @@ grupoBotones.appendChild(botonContinuar);
 grupoBotones.appendChild(botonReiniciar);
 
 function agregarBotones() {
-  botones.remove();
-  nombreForm.appendChild(grupoBotones);
+  botonEmpezar.remove();
+  botones.appendChild(grupoBotones);
 }
 
 //Evento para boton de Empezar
@@ -63,10 +64,6 @@ botonEmpezar.onclick = () => {
   agregarBotones();
 };
 
-botonContinuar.addEventListener("click", botonContinuar__Submit =>  {
-  console.log("hola");
-})
-  
 
 //Botones Reset
 
@@ -99,6 +96,7 @@ botonReiniciar__No.id = "botonReiniciar__No";
 
 let botonReiniciar__P = document.createElement("p");
 botonReiniciar__P.innerHTML = "¿Estas seguro de que quieres empezar de nuevo?";
+botonReiniciar__P.id = "botonReiniciar__P";
 
 botonReiniciar.addEventListener("click", botonReiniciar__Empezar, false);
 
@@ -106,19 +104,31 @@ botonReiniciar__Si.addEventListener("click", reload, false);
 botonReiniciar__No.onclick = () => {
   botonReiniciar__No__Remove();
 };
+let heroe = [];
+
+
+function alerta__Remove() {
+  alerta__p.innerHTML = "";
+  alerta__p.classList.remove("alerta__colores");
+};
 
 //Boton Continuar
 
-// let alertaNombre__P = document.createElement("p");
-// alertaNombre__P.classList.add("danger");
-// alertaNombre__P.innerHTML = "Porfavor ingresa tu nombre";
-
-// function botonContinuar__Funcion() {
-//   console.log("What?");
-// }
-
-//asdfdds
-// while se puede confirmar con el json del value.  pon eso primero
+botonContinuar.addEventListener("click", botonContinuar__Empezar =>  {
+  if (nombreForm__Input.value == "") {
+    alerta__p.innerHTML = "Porfavor ingresa tu nombre";
+    alerta__p.classList.add("mx-auto", "alerta__colores", "mt-3", "p-3", "text-center");
+  } else {
+   alerta__Remove();
+   heroe.push({nombre: nombreForm__Input.value});
+   const heroeStorage = JSON.stringify(heroe);
+    localStorage.setItem("heroe", heroeStorage);
+    console.log(heroe);
+    if (document.body.contains(document.getElementById("botonReiniciar__P"))) {
+botonReiniciar__No__Remove();
+    };
+   }
+})
 
 //   nombre = prompt("¡Hola! Cuál es tu nombre?");
 //   while (nombre == "") {
