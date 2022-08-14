@@ -8,8 +8,6 @@ let imagenDragon1 = document.getElementById("imagenDragon1");
 let promptPlace = document.getElementById("promptPlace");
 let botones = document.getElementById("botones");
 
-
-
 //Form para nombre con botones Continuar y Reiniciar
 
 let nombreForm = document.createElement("div");
@@ -64,7 +62,6 @@ botonEmpezar.onclick = () => {
   agregarBotones();
 };
 
-
 //Botones Reset
 
 function reload() {
@@ -88,7 +85,6 @@ botonReiniciar__Si.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
 botonReiniciar__Si.innerHTML = "Si";
 botonReiniciar__Si.id = "botonReiniciar__Si";
 
-
 let botonReiniciar__No = document.createElement("button");
 botonReiniciar__No.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
 botonReiniciar__No.innerHTML = "No";
@@ -110,55 +106,78 @@ let heroe = [];
 function alerta__Remove() {
   alerta__p.innerHTML = "";
   alerta__p.classList.remove("alerta__colores");
-};
-
+}
 
 //Boton Continuar
 
-botonContinuar.addEventListener("click", botonContinuar__Empezar =>  {
+botonContinuar.addEventListener("click", (botonContinuar__Empezar) => {
   if (nombreForm__Input.value == "") {
     alerta__p.innerHTML = "Porfavor ingresa tu nombre";
-    alerta__p.classList.add("mx-auto", "alerta__colores", "mt-3", "p-3", "text-center");
+    alerta__p.classList.add(
+      "mx-auto",
+      "alerta__colores",
+      "mt-3",
+      "p-3",
+      "text-center"
+    );
   } else {
-   alerta__Remove();
-   heroe.push({nombre: nombreForm__Input.value});
-   const heroeStorage = JSON.stringify(heroe);
+    alerta__Remove();
+    heroe.push({ nombre: nombreForm__Input.value });
+    const heroeStorage = JSON.stringify(heroe);
     localStorage.setItem("heroe", heroeStorage);
     console.log(heroe);
     if (document.body.contains(document.getElementById("botonReiniciar__P"))) {
-botonReiniciar__No__Remove();
-    };
-   }
-})
+      botonReiniciar__No__Remove();
+    }
+    nombreForm.remove();
+    grupoBotones.remove();
+    razaDivAppend();
+  }
+});
 
-//Cards para Raza 
+//Cards para Raza
 
-let razaForm = creatElement("div");
+let razaDiv__P = document.createElement("div");
+razaDiv__P.classList.add("col-8");
 
-let razaForm__P = createElement("p");
-razaForm__P.innerHtml = ("¡Hola" + heroe.nombre + "Antes de empezar la batalla, te haremos unas preguntas para decidir qué tipo de heroe eres.  ¿Bien?  ¡Empecemos!");
+let razaDiv__Picture = document.createElement("div");
+razaDiv__Picture.classList.add("col-4");
 
-let razaForm__P2 = createElement("p");
-razaForm__P2.innerHTML = ("Te encuentras en un bosque mágico.  Estas caminando tranquilamente, pensando en cómo derrotarás tus enemigos." +
-"<br>" +
-"De pronto, te encuentras con una bolsa llena de monedas de oro en medio del camino." +
-"<br>" +
-"¿Qué haces con ella?" );
+let raza__Coin__Picture = document.createElement("img");
+raza__Coin__Picture.src = "images\bag_of_coins.jpg";
+raza__Coin__Picture.classList.add("img-fluid");
 
-let razaForm__CardPlace = createElement("div");
+let razaForm__P = document.createElement("p");
+razaForm__P.innerHtml =
+  "¡Hola" +
+  heroe.nombre +
+  "Antes de empezar la batalla, te haremos unas preguntas para decidir qué tipo de heroe eres.  ¿Bien?  ¡Empecemos!";
 
-let razaForm__Card = createElement("div");
+let razaForm__P2 = document.createElement("p");
+razaForm__P2.innerHTML =
+  "Te encuentras en un bosque mágico.  Estas caminando tranquilamente, pensando en cómo derrotarás tus enemigos." +
+  "<br>" +
+  "De pronto, te encuentras con una bolsa llena de monedas de oro en medio del camino." +
+  "<br>" +
+  "¿Qué haces con ella?";
+
+function razaDivAppend() {
+  razaDiv__P.appendChild(razaForm__P);
+  razaDiv__P.appendChild(razaForm__P2);
+  razaDiv__Picture.appendChild(raza__Coin__Picture);
+  promptPlace.appendChild(razaDiv__P);
+  promptPlace.appendChild(razaDiv__Picture);
+}
+
+let razaForm__CardPlace = document.createElement("div");
+
+let razaForm__Card = document.createElement("div");
 
 let razaForm__Card__Elfo = razaForm__Card;
 let razaForm__Card__Enano = razaForm__Card;
 let razaForm__Card__Humano = razaForm__Card;
 
-
 //Funcion Raza - Quitar boton Continuar, mover boton Reiniciar y agregar Raza Cards
-
-function razaForm__Function() {
-nombreForm.remove;
-};
 
 //   nombre = prompt("¡Hola! Cuál es tu nombre?");
 //   while (nombre == "") {

@@ -1,5 +1,7 @@
 * {
   font-family: "Cormorant SC", serif;
+  font-size: 22px;
+  font-weight: 500;
 }
 
 .headerFont {
@@ -18,5 +20,5 @@
 .alerta__colores {
   background-color: red;
   color: black;
-  font-size: 16px;
+  font-size: 20px;
 }
