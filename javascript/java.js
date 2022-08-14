@@ -101,16 +101,16 @@ botonReiniciar__No.onclick = () => {
   botonReiniciar__No__Remove();
 };
 
-let heroe = [];
-
 function alerta__Remove() {
   alerta__p.innerHTML = "";
   alerta__p.classList.remove("alerta__colores");
 }
 
 //Boton Continuar
+let heroe = [];
+let heroeStorage = JSON.stringify(heroe);
 
-botonContinuar.addEventListener("click", (botonContinuar__Empezar) => {
+botonContinuar.addEventListener("click", () => {
   if (nombreForm__Input.value == "") {
     alerta__p.innerHTML = "Porfavor ingresa tu nombre";
     alerta__p.classList.add(
@@ -123,7 +123,6 @@ botonContinuar.addEventListener("click", (botonContinuar__Empezar) => {
   } else {
     alerta__Remove();
     heroe.push({ nombre: nombreForm__Input.value });
-    const heroeStorage = JSON.stringify(heroe);
     localStorage.setItem("heroe", heroeStorage);
     console.log(heroe);
     if (document.body.contains(document.getElementById("botonReiniciar__P"))) {
@@ -135,113 +134,179 @@ botonContinuar.addEventListener("click", (botonContinuar__Empezar) => {
   }
 });
 
-//Cards para Raza
+const heroNameRetrieve = JSON.parse(localStorage.getItem("heroe")).map(
+  (nombreRetrieve) => nombreRetrieve.nombre
+);
+
+//Intro para Raza
 
 let razaDiv__P = document.createElement("div");
 razaDiv__P.classList.add("col-8");
 
 let razaDiv__Picture = document.createElement("div");
-razaDiv__Picture.classList.add("col-4");
+razaDiv__Picture.classList.add("col-4", "d-flex");
 
 let raza__Coin__Picture = document.createElement("img");
-raza__Coin__Picture.src = "images\bag_of_coins.jpg";
-raza__Coin__Picture.classList.add("img-fluid");
+raza__Coin__Picture.src = "images/coins.jpg";
+raza__Coin__Picture.classList.add("img-fluid", "my-auto");
 
-let razaForm__P = document.createElement("p");
-razaForm__P.innerHtml =
-  "¡Hola" +
-  heroe.nombre +
-  "Antes de empezar la batalla, te haremos unas preguntas para decidir qué tipo de heroe eres.  ¿Bien?  ¡Empecemos!";
+let razaPar__1 = document.createElement("p");
+razaPar__1.innerHTML =
+  "¡Hola " +
+  heroNameRetrieve +
+  "! <br>" +
+  "Antes de empezar tu batalla contra el dragón, te haremos unas preguntas para decidir qué tipo de heroe eres.  ¿Bien?  ¡Empecemos!";
 
-let razaForm__P2 = document.createElement("p");
-razaForm__P2.innerHTML =
+let razaPar__2 = document.createElement("p");
+razaPar__2.innerHTML =
   "Te encuentras en un bosque mágico.  Estas caminando tranquilamente, pensando en cómo derrotarás tus enemigos." +
   "<br>" +
   "De pronto, te encuentras con una bolsa llena de monedas de oro en medio del camino." +
   "<br>" +
   "¿Qué haces con ella?";
 
+//Cards para Raza
+
+let razaPromptText = [
+  { id: 1, text: "La dejas en el piso, pues no es tuya.", raza: "elfo" },
+  {
+    id: 2,
+    text: "Te la Te la llevas y en la siguiente aldea te compras una cerveza.",
+    raza: "enano",
+  },
+  {
+    id: 3,
+    text: "Te la llevas y te compras un caballo para que tu viaje sea más agradable.",
+    raza: "humano",
+  },
+];
+
+let razaForm__CardPlace = document.createElement("div");
+razaForm__CardPlace.classList.add("row");
+
+//carta Elfo
+
+cartaElfo__Col = document.createElement("div");
+cartaElfo__Col.classList.add("col-4");
+cartaElfo__Div = document.createElement("div");
+cartaElfo__Div.classList.add("card", "h-100", "text-center");
+cartaElfo__Body = document.createElement("div");
+cartaElfo__Body.classList.add("card-body", "d-flex", "flex-column");
+cartaElfo__Text = document.createElement("p");
+cartaElfo__Text.classList.add("my-auto");
+cartaElfo__Text.innerHTML = razaPromptText
+  .filter((el) => el.id == 1)
+  .map((el) => el.text);
+cartaElfo__Button = document.createElement("button");
+cartaElfo__Button.classList.add("btn", "btn-secondary", "btn-large", "mt-auto");
+cartaElfo__Button.type = "button";
+cartaElfo__Button.innerHTML = "Opción 1";
+cartaElfo__Button.id = "botonElfo";
+
+cartaElfo__Col.appendChild(cartaElfo__Div);
+cartaElfo__Div.appendChild(cartaElfo__Body);
+cartaElfo__Body.appendChild(cartaElfo__Text);
+cartaElfo__Body.appendChild(cartaElfo__Button);
+
+//Carta Enano
+
+cartaEnano__Col = document.createElement("div");
+cartaEnano__Col.classList.add("col-4");
+cartaEnano__Div = document.createElement("div");
+cartaEnano__Div.classList.add("card", "h-100", "text-center");
+cartaEnano__Body = document.createElement("div");
+cartaEnano__Body.classList.add("card-body", "d-flex", "flex-column");
+cartaEnano__Text = document.createElement("p");
+cartaEnano__Text.innerHTML = razaPromptText
+  .filter((el) => el.id == 3)
+  .map((el) => el.text);
+cartaEnano__Button = document.createElement("button");
+cartaEnano__Button.classList.add(
+  "btn",
+  "btn-secondary",
+  "btn-large",
+  "mt-auto"
+);
+cartaEnano__Button.type = "button";
+cartaEnano__Button.innerHTML = "Opción 2";
+cartaEnano__Button.id = "botonEnano";
+
+cartaEnano__Col.appendChild(cartaEnano__Div);
+cartaEnano__Div.appendChild(cartaEnano__Body);
+cartaEnano__Body.appendChild(cartaEnano__Text);
+cartaEnano__Body.appendChild(cartaEnano__Button);
+
+//Carta Humano
+
+cartaHumano__Col = document.createElement("div");
+cartaHumano__Col.classList.add("col-4");
+cartaHumano__Div = document.createElement("div");
+cartaHumano__Div.classList.add("card", "h-100", "text-center");
+cartaHumano__Body = document.createElement("div");
+cartaHumano__Body.classList.add("card-body", "d-flex", "flex-column");
+cartaHumano__Text = document.createElement("p");
+cartaHumano__Text.innerHTML = razaPromptText
+  .filter((el) => el.id == 3)
+  .map((el) => el.text);
+cartaHumano__Button = document.createElement("button");
+cartaHumano__Button.classList.add(
+  "btn",
+  "btn-secondary",
+  "btn-large",
+  "mt-auto"
+);
+cartaHumano__Button.type = "button";
+cartaHumano__Button.innerHTML = "Opción 3";
+cartaHumano__Button.id = "botonHumano";
+
+cartaHumano__Col.appendChild(cartaHumano__Div);
+cartaHumano__Div.appendChild(cartaHumano__Body);
+cartaHumano__Body.appendChild(cartaHumano__Text);
+cartaHumano__Body.appendChild(cartaHumano__Button);
+
+razaForm__CardPlace.appendChild(cartaElfo__Col);
+razaForm__CardPlace.appendChild(cartaEnano__Col);
+razaForm__CardPlace.appendChild(cartaHumano__Col);
+
+//Funcion para Raza
+
 function razaDivAppend() {
-  razaDiv__P.appendChild(razaForm__P);
-  razaDiv__P.appendChild(razaForm__P2);
+  razaDiv__P.appendChild(razaPar__1);
+  razaDiv__P.appendChild(razaPar__2);
   razaDiv__Picture.appendChild(raza__Coin__Picture);
   promptPlace.appendChild(razaDiv__P);
   promptPlace.appendChild(razaDiv__Picture);
+  promptPlace.classList.remove("col-10");
+  promptPlace.classList.add("d-flex", "flex-row", "col-12");
+  botones.appendChild(razaForm__CardPlace);
+  botonElfo__Function();
+
+  if (document.body.contains(document.getElementById("botonElfo"))) {
+  }
 }
 
-let razaForm__CardPlace = document.createElement("div");
+// Botones de Raza
 
-let razaForm__Card = document.createElement("div");
+function botonElfo__Function() {
+  botonElfo = document.getElementById("botonElfo");
 
-let razaForm__Card__Elfo = razaForm__Card;
-let razaForm__Card__Enano = razaForm__Card;
-let razaForm__Card__Humano = razaForm__Card;
+  razaEscogida = "elfo";
+  heroe.push({
+    raza: razaEscogida,
+  });
 
-//Funcion Raza - Quitar boton Continuar, mover boton Reiniciar y agregar Raza Cards
+  localStorage.setItem("heroe", heroeStorage);
 
-//   nombre = prompt("¡Hola! Cuál es tu nombre?");
-//   while (nombre == "") {
-//     alert("Tienes que ingresar tu nombre");
-//     nombre = prompt("¡Hola! Cuál es tu nombre?");
-//   }
-//   alert(
-//     "¡Hola " +
-//       nombre +
-//       "!\n\nPrimero que nada, te haremos unas preguntas para decidir qué tipo de heroe eres.  ¿Bien?  ¡Empezamos!"
-//   );
-// ;
+  botonElfo.onclick = () => {
+    promptPlace.removeChild(razaDiv__P);
+    promptPlace.removeChild(razaDiv__Picture);
+    botones.removeChild(razaForm__CardPlace);
+  };
+}
 
-// raza = prompt(
-//   "Te encuentras en un bosque mágico.  Estas caminando hacía el dragón, pensando en cómo lo derrotarás." +
-//     "\n" +
-//     "De pronto, te encuentras una bolsa llena de monedas de oro en medio del camino.  Qué haces?" +
-//     "\n\n" +
-//     "La dejas en el piso, pues no es tuya: Teclea #1" +
-//     "\n\n" +
-//     "Te la llevas y en la siguiente aldea te compras una cerveza: Teclea #2." +
-//     "\n\n" +
-//     "Te la llevas y te compras un caballo para que tu viaje sea más agradable: Teclea #3."
-// );
+// botonEnano = document.getElementById("botonEnano");
 
-// if (raza == 1 || raza == 2 || raza == 3) {
-// } else {
-//   alert("Por favor ingresa un número entre el 1 y el 3 para continuar");
-//   raza = parseInt(
-//     prompt(
-//       "Te encuentras en un bosque mágico.  Estas caminando hacía el dragón, pensando en cómo lo derrotarás." +
-//         "\n" +
-//         "De pronto, te encuentras una bolsa llena de monedas de oro en medio del camino.  Qué haces?" +
-//         "\n\n" +
-//         "La dejas en el piso, pues no es tuya: Teclea #1" +
-//         "\n\n" +
-//         "Te la llevas y en la siguiente aldea te compras una cerveza: Teclea #2." +
-//         "\n\n" +
-//         "Te la llevas y te compras un caballo para que tu viaje sea más agradable: Teclea #3."
-//     )
-//   );
-// }
-
-// console.log(raza);
-
-// if (raza == 1) {
-//   razaNombre = "elfo";
-// } else if (raza == 2) {
-//   razaNombre = "enano";
-// } else {
-//   razaNombre = "humano";
-// }
-
-// // switch (raza) {
-// //   case 1:
-// //     razaNombre = "elfo";
-// //     break;
-// //   case 2:
-// //     razaNombre = "enano";
-// //     break;
-// //   case 3:
-// //     razaNombre = "humano";
-// //     break;
-// // }
+// botonHumano = document.getAnimations("botonHumano");
 
 // console.log(razaNombre);
 
