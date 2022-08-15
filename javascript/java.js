@@ -507,17 +507,13 @@ function botonBaston__Function() {
     promptPlace.removeChild(armaDiv__P);
     botones.removeChild(armaForm__CardPlace);
     document.getElementById("tituloPrimero").innerHTML = "¡Bienvenido!";
-  alert(heroArmaRetrieve);
   };
 }
 
 //Constants for Retrieving Storage
 
-
-
-const heroArmaRetrieve = JSON.parse(localStorage.getItem("heroe"))[2];
-
 const heroRazaRetrieve = JSON.parse(localStorage.getItem("heroe"))[1];
+const heroArmaRetrieve = JSON.parse(localStorage.getItem("heroe"))[2];
 
 function bienvenidaHeroe() {
 
@@ -526,7 +522,7 @@ function bienvenidaHeroe() {
 bienvenidaDiv__P.classList.add("col-12");
 
 let bienvenidaPar__1 = document.createElement("p");
-bienvenidaPar__1.innerHTML = "";
+bienvenidaPar__1.innerHTML = "Bienvenido " + heroNameRetrieve + ".  Has escogido ser un " + <b>heroRazaRetrieve</b> + "y tu arma de preferencia es " +  ;
 }
 
 
