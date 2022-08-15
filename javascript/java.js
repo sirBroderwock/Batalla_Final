@@ -7,7 +7,7 @@ let botonEmpezar = document.getElementById("botonEmpezar");
 let imagenDragon1 = document.getElementById("imagenDragon1");
 let promptPlace = document.getElementById("promptPlace");
 let botones = document.getElementById("botones");
-
+let heroe = [];
 //Form para nombre con botones Continuar y Reiniciar
 
 let nombreForm = document.createElement("div");
@@ -107,8 +107,8 @@ function alerta__Remove() {
 }
 
 //Boton Continuar
-let heroe = [];
-let heroeStorage = JSON.stringify(heroe);
+
+
 
 botonContinuar.addEventListener("click", () => {
   if (nombreForm__Input.value == "") {
@@ -123,8 +123,9 @@ botonContinuar.addEventListener("click", () => {
   } else {
     alerta__Remove();
     heroe.push({ nombre: nombreForm__Input.value });
-    localStorage.setItem("heroe", heroeStorage);
     console.log(heroe);
+    let heroeStorage = JSON.stringify(heroe);
+    localStorage.setItem("heroe", heroeStorage);
     if (document.body.contains(document.getElementById("botonReiniciar__P"))) {
       botonReiniciar__No__Remove();
     }
@@ -134,9 +135,9 @@ botonContinuar.addEventListener("click", () => {
   }
 });
 
+
 const heroNameRetrieve = JSON.parse(localStorage.getItem("heroe")).map(
-  (nombreRetrieve) => nombreRetrieve.nombre
-);
+  (nombreRetrieve) => nombreRetrieve.nombre || []);
 
 //Intro para Raza
 
@@ -279,40 +280,76 @@ function razaDivAppend() {
   promptPlace.classList.remove("col-10");
   promptPlace.classList.add("d-flex", "flex-row", "col-12");
   botones.appendChild(razaForm__CardPlace);
-  botonElfo__Function();
+  
+    botonElfo__Function();
+    botonEnano__Function();
+    botonHumano__Function();
 
-  if (document.body.contains(document.getElementById("botonElfo"))) {
-  }
-}
-
+ }
 // Botones de Raza
 
+//Boton Elfo
+
 function botonElfo__Function() {
+
   botonElfo = document.getElementById("botonElfo");
 
-  razaEscogida = "elfo";
-  heroe.push({
-    raza: razaEscogida,
-  });
-
-  localStorage.setItem("heroe", heroeStorage);
-
   botonElfo.onclick = () => {
+    razaEscogida = "elfo";
+    heroe.push({raza: razaEscogida});
+    localStorage.setItem("heroe", JSON.stringify(heroe));
     promptPlace.removeChild(razaDiv__P);
     promptPlace.removeChild(razaDiv__Picture);
     botones.removeChild(razaForm__CardPlace);
   };
 }
 
-// botonEnano = document.getElementById("botonEnano");
+//Boton Enano
+function botonEnano__Function() {
 
-// botonHumano = document.getAnimations("botonHumano");
+  let botonEnano = document.getElementById("botonEnano");
+  
+  botonEnano.onclick = () => {
+    razaEscogida = "enano";
+  heroe.push({raza: razaEscogida});
+  localStorage.setItem("heroe", JSON.stringify(heroe));
+    promptPlace.removeChild(razaDiv__P);
+    promptPlace.removeChild(razaDiv__Picture);
+    botones.removeChild(razaForm__CardPlace);
+  };
+}
 
-// console.log(razaNombre);
+function botonHumano__Function() {
+
+  let botonElfo = document.getElementById("botonHumano");
+  
+  botonElfo.onclick = () => {
+    razaEscogida = "humano";
+  heroe.push({raza: razaEscogida});
+  localStorage.setItem("heroe", JSON.stringify(heroe));
+    promptPlace.removeChild(razaDiv__P);
+    promptPlace.removeChild(razaDiv__Picture);
+    botones.removeChild(razaForm__CardPlace);
+  };
+}
+
+// Intro para Armas
+
+let armaDiv__P = document.createElement("div");
+armaDiv__P.classList.add("col-12");
+
+let razaPar__1 = document.createElement("p");
+razaPar__1.innerHTML = "Cuándo el rey te pidio que mataras al dragón, te dio a escoger de tres poderosas armas para poder derrotarlo.  Todas son excelentes, pero cada una es especial." +
+"<br>" + 
+"¿Cuál escogiste?";
+
+
+
+
 
 // arma = parseInt(
 //   prompt(
-//     "Cuándo el rey te pidio que mataras al dragón, te dio a escoger de tres poderosas armas para poder derrotarlo.  Todas son excelentes, pero cada una es especial." +
+//     "Cuándo " +
 //       "\n\n" +
 //       "- La espada - Un arma para un caballero.  Filosa y capaz de desviar cualquier ataque físico del dragón" +
 //       "\n\n" +
