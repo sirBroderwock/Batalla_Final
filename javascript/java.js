@@ -97,6 +97,7 @@ botonReiniciar__P.id = "botonReiniciar__P";
 botonReiniciar.addEventListener("click", botonReiniciar__Empezar, false);
 
 botonReiniciar__Si.addEventListener("click", reload, false);
+
 botonReiniciar__No.onclick = () => {
   botonReiniciar__No__Remove();
 };
