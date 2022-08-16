@@ -134,9 +134,7 @@ botonContinuar.addEventListener("click", () => {
     razaDivAppend();
   }
 });
-
-const heroNameRetrieve = JSON.parse(localStorage.getItem("heroe")).map(
-  (nombreRetrieve) => nombreRetrieve.nombre);
+const heroNameRetrieve = JSON.parse(localStorage.getItem("heroe"))[0];
 
 
 //Intro para Raza
@@ -169,16 +167,16 @@ razaPar__2.innerHTML =
 //Cards para Raza
 
 let razaPromptText = [
-  { id: 1, text: "La dejas en el piso, pues no es tuya.", raza: "elfo" },
+  { id: 1, text: "La dejas en el piso, pues no es tuya.", raza: "elfo", img:"images/elfo.jpeg"},
   {
     id: 2,
     text: "Te la Te la llevas y en la siguiente aldea te compras una cerveza.",
-    raza: "enano",
+    raza: "enano", img:"images/enano.jpeg",
   },
   {
     id: 3,
     text: "Te la llevas y te compras un caballo para que tu viaje sea más agradable.",
-    raza: "humano",
+    raza: "humano", img:"images/humano.jpeg",
   },
 ];
 
@@ -480,6 +478,7 @@ function botonEspada__Function() {
     promptPlace.removeChild(armaDiv__P);
     botones.removeChild(armaForm__CardPlace);
     document.getElementById("tituloPrimero").innerHTML = "¡Bienvenido!";
+    bienvenida__Heroe();
   };
 }
 
@@ -493,6 +492,7 @@ function botonLanza__Function() {
     promptPlace.removeChild(armaDiv__P);
     botones.removeChild(armaForm__CardPlace);
     document.getElementById("tituloPrimero").innerHTML = "¡Bienvenido!";
+    bienvenida__Heroe();
   };
 }
 
@@ -507,6 +507,7 @@ function botonBaston__Function() {
     promptPlace.removeChild(armaDiv__P);
     botones.removeChild(armaForm__CardPlace);
     document.getElementById("tituloPrimero").innerHTML = "¡Bienvenido!";
+    bienvenida__Heroe();
   };
 }
 
@@ -515,14 +516,29 @@ function botonBaston__Function() {
 const heroRazaRetrieve = JSON.parse(localStorage.getItem("heroe"))[1];
 const heroArmaRetrieve = JSON.parse(localStorage.getItem("heroe"))[2];
 
-function bienvenidaHeroe() {
 
+if (heroArmaRetrieve == "espada" || heroArmaRetrieve == "lanza" ) {
+  heroArmaRetrieve__prefijo = "la"
+} else {
+  heroArmaRetrieve__prefijo = "el"
+};
 
-  let bienvenidaDiv__P = document.createElement("div");
-bienvenidaDiv__P.classList.add("col-12");
+function bienvenida__Heroe() {
 
+let bienvenidaDiv = document.createElement("div");
+bienvenidaDiv.classList.add("col-12");
+let bienvenidaDiv__Img = document.createElement("img");
+bienvenidaDiv__Img.classList.add("img-fluid");
+bienvenidaDiv__Img.src = razaPromptText.filter((el) => el.raza === heroRazaRetrieve).map((el) => el.img);
 let bienvenidaPar__1 = document.createElement("p");
-bienvenidaPar__1.innerHTML = "Bienvenido " + heroNameRetrieve + ".  Has escogido ser un " + <b>heroRazaRetrieve</b> + "y tu arma de preferencia es " +  ;
+bienvenidaPar__1.innerHTML = ("Bienvenido " + heroNameRetrieve + ".  Has escogido ser un " + heroRazaRetrieve + ", y tu arma de preferencia es " + heroArmaRetrieve__prefijo + " " + heroArmaRetrieve + ".");
+
+
+promptPlace.classList.remove("d-flex", "flex-row");
+promptPlace.appendChild(bienvenidaDiv);
+promptPlace.appendChild(bienvenidaDiv__Img);
+bienvenidaDiv.appendChild(bienvenidaPar__1);
+
 }
 
 
