@@ -568,82 +568,85 @@ function bienvenida__Heroe() {
   promptPlace.appendChild(bienvenidaDiv);
   promptPlace.appendChild(bienvenidaDiv__Img);
   bienvenidaDiv.appendChild(bienvenidaPar__1);
+  console.log(heroeValores);
+  console.log(armaValores__Heroe);
 }
-
-// bienvenida = (valor1, valor2, valor3) => {
-//   alert(
-//     "¡Bienvenido a la aventura " +
-//       valor1 +
-//       "!" +
-//       "\n" +
-//       "Tú eres un fantástico " +
-//       valor2 +
-//       "" +
-//       "\n" +
-//       "y tu arma para dar batalla, es " +
-//       valor3 +
-//       "."
-//   );
-// };
-
-// bienvenida(nombre, razaNombre, armaNombre);
 
 // /* Objetos para crear valores de cada raza */
 
-// class razaValores {
-//   constructor(nombre, hitPoints, mana) {
-//     this.nombre = nombre;
-//     this.hitPoints = hitPoints;
-//     this.mana = mana;
-//   }
-// }
+class razaValores {
+  constructor(nombre, hitPoints, mana) {
+    this.nombre = nombre;
+    this.hitPoints = hitPoints;
+    this.mana = mana;
+  }
+}
 
-// const elfoValores = new razaValores("elfo", 300, 300);
-// const enanoValores = new razaValores("enano", 500, 100);
-// const humanoValores = new razaValores("humano", 400, 200);
+const elfoValores = new razaValores("elfo", 300, 300);
+const enanoValores = new razaValores("enano", 500, 100);
+const humanoValores = new razaValores("humano", 400, 200);
+let heroeValores;
 
-// /*Funcion para random Numbers */
+if (heroe[1] == "elfo") {
+  heroeValores = elfoValores;
+} else if (heroe[1] == "enano") {
+  heroeValores = enanoValores;
+} else {
+  heroeValores = humanoValores;
+}
 
-// randomNumbers = (valor1) => {
-//   let randomNumbers__1 = Math.floor(Math.random() * valor1);
-//   return randomNumbers__1;
-// };
+/*Funcion para random Numbers */
 
-// let fuerzaRandom = randomNumbers(50);
-// let defensaRandom = randomNumbers(30);
-// let defensa__Magica__Random = randomNumbers(20);
-// let poder__Magico__Random = randomNumbers(50);
+randomNumbers = (valor1) => {
+  let randomNumbers__1 = Math.floor(Math.random() * valor1);
+  return randomNumbers__1;
+};
 
-// /*Objetos para armas */
+let fuerzaRandom = randomNumbers(50);
+let defensaRandom = randomNumbers(30);
+let defensa__Magica__Random = randomNumbers(20);
+let poder__Magico__Random = randomNumbers(50);
 
-// class armaValores {
-//   constructor(nombre, fuerza, defensa, defensa__Magica) {
-//     this.nombre = nombre;
-//     this.fuerza = fuerza;
-//     this.defensa = defensa;
-//     this.defensa__Magica = defensa__Magica;
-//   }
-// }
+/*Objetos para armas */
 
-// const espadaValores = new armaValores(
-//   "espada",
-//   fuerzaRandom + 18,
-//   defensaRandom,
-//   defensa__Magica__Random - 5
-// );
+class armaValores {
+  constructor(nombre, fuerza, defensa, defensa__Magica) {
+    this.nombre = nombre;
+    this.fuerza = fuerza;
+    this.defensa = defensa;
+    this.defensa__Magica = defensa__Magica;
+  }
+}
 
-// const lanzaValores = new armaValores(
-//   "lanza",
-//   fuerzaRandom + 25,
-//   defensaRandom - 5,
-//   defensa__Magica__Random - 8
-// );
-// const bastonValores = new armaValores(
-//   "baston mágico",
-//   fuerzaRandom + 10,
-//   defensaRandom - 10,
-//   defensa__Magica__Random + 25
-// );
+const espadaValores = new armaValores(
+  "espada",
+  fuerzaRandom + 18,
+  defensaRandom,
+  defensa__Magica__Random - 5
+);
+
+const lanzaValores = new armaValores(
+  "lanza",
+  fuerzaRandom + 25,
+  defensaRandom - 5,
+  defensa__Magica__Random - 8
+);
+const bastonValores = new armaValores(
+  "baston mágico",
+  fuerzaRandom + 10,
+  defensaRandom - 10,
+  defensa__Magica__Random + 25
+);
+
+let armaValores__Heroe;
+
+if (JSON.parse(localStorage.getItem("heroe")[2] == "espada")) {
+  armaValores__Heroe = espadaValores;
+} else if (JSON.parse(localStorage.getItem("heroe")[2] == "lanza")) {
+  armaValores__Heroe = lanzaValores;
+} else {
+  armaValores__Heroe = bastonValores;
+}
 
 // /* Objeto para enemigos y dragons */
 
