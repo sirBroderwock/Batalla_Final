@@ -109,8 +109,6 @@ function alerta__Remove() {
 
 //Boton Continuar
 
-
-
 botonContinuar.addEventListener("click", () => {
   if (nombreForm__Input.value == "") {
     alerta__p.innerHTML = "Porfavor ingresa tu nombre";
@@ -135,8 +133,6 @@ botonContinuar.addEventListener("click", () => {
     razaDivAppend();
   }
 });
-const heroNameRetrieve = JSON.parse(localStorage.getItem("heroe"))[0];
-
 
 //Intro para Raza
 
@@ -150,34 +146,26 @@ let raza__Coin__Picture = document.createElement("img");
 raza__Coin__Picture.src = "images/coins.jpg";
 raza__Coin__Picture.classList.add("img-fluid", "my-auto");
 
-let razaPar__1 = document.createElement("p");
-razaPar__1.innerHTML =
-  "¡Hola " +
-  heroNameRetrieve +
-  "! <br>" +
-  "Antes de empezar tu batalla contra el dragón, te haremos unas preguntas para decidir qué tipo de heroe eres.  ¿Bien?  ¡Empecemos!";
-
-let razaPar__2 = document.createElement("p");
-razaPar__2.innerHTML =
-  "Te encuentras en un bosque mágico.  Estas caminando tranquilamente, pensando en cómo derrotarás tus enemigos." +
-  "<br>" +
-  "De pronto, te encuentras con una bolsa llena de monedas de oro en medio del camino." +
-  "<br>" +
-  "¿Qué haces con ella?";
-
 //Cards para Raza
 
 let razaPromptText = [
-  { id: 1, text: "La dejas en el piso, pues no es tuya.", raza: "elfo", img:"images/elfo.jpeg"},
+  {
+    id: 1,
+    text: "La dejas en el piso, pues no es tuya.",
+    raza: "elfo",
+    img: "images/elfo.jpeg",
+  },
   {
     id: 2,
     text: "Te la Te la llevas y en la siguiente aldea te compras una cerveza.",
-    raza: "enano", img:"images/enano.jpeg",
+    raza: "enano",
+    img: "images/enano.jpeg",
   },
   {
     id: 3,
     text: "Te la llevas y te compras un caballo para que tu viaje sea más agradable.",
-    raza: "humano", img:"images/humano.jpeg",
+    raza: "humano",
+    img: "images/humano.jpeg",
   },
 ];
 
@@ -271,6 +259,22 @@ razaForm__CardPlace.appendChild(cartaHumano__Col);
 //Funcion para Raza
 
 function razaDivAppend() {
+  heroNameRetrieve = JSON.parse(localStorage.getItem("heroe"))[0];
+  let razaPar__1 = document.createElement("p");
+  razaPar__1.innerHTML =
+    "¡Hola " +
+    heroNameRetrieve +
+    "! <br>" +
+    "Antes de empezar tu batalla contra el dragón, te haremos unas preguntas para decidir qué tipo de heroe eres.  ¿Bien?  ¡Empecemos!";
+
+  let razaPar__2 = document.createElement("p");
+  razaPar__2.innerHTML =
+    "Te encuentras en un bosque mágico.  Estas caminando tranquilamente, pensando en cómo derrotarás tus enemigos." +
+    "<br>" +
+    "De pronto, te encuentras con una bolsa llena de monedas de oro en medio del camino." +
+    "<br>" +
+    "¿Qué haces con ella?";
+
   razaDiv__P.appendChild(razaPar__1);
   razaDiv__P.appendChild(razaPar__2);
   razaDiv__Picture.appendChild(raza__Coin__Picture);
@@ -279,18 +283,16 @@ function razaDivAppend() {
   promptPlace.classList.remove("col-10");
   promptPlace.classList.add("d-flex", "flex-row", "col-12");
   botones.appendChild(razaForm__CardPlace);
-  
-    botonElfo__Function();
-    botonEnano__Function();
-    botonHumano__Function();
 
- }
+  botonElfo__Function();
+  botonEnano__Function();
+  botonHumano__Function();
+}
 // Botones de Raza
 
 //Boton Elfo
 
 function botonElfo__Function() {
-
   botonElfo = document.getElementById("botonElfo");
 
   botonElfo.onclick = () => {
@@ -305,12 +307,11 @@ function botonElfo__Function() {
 
 //Boton Enano
 function botonEnano__Function() {
-
   let botonEnano = document.getElementById("botonEnano");
-  
+
   botonEnano.onclick = () => {
-  heroe.push("enano");
-  localStorage.setItem("heroe", JSON.stringify(heroe));
+    heroe.push("enano");
+    localStorage.setItem("heroe", JSON.stringify(heroe));
     promptPlace.removeChild(razaDiv__P);
     promptPlace.removeChild(razaDiv__Picture);
     botones.removeChild(razaForm__CardPlace);
@@ -319,12 +320,11 @@ function botonEnano__Function() {
 }
 
 function botonHumano__Function() {
-
   let botonHumano = document.getElementById("botonHumano");
-  
+
   botonHumano.onclick = () => {
-  heroe.push("humano");
-  localStorage.setItem("heroe", JSON.stringify(heroe));
+    heroe.push("humano");
+    localStorage.setItem("heroe", JSON.stringify(heroe));
     promptPlace.removeChild(razaDiv__P);
     promptPlace.removeChild(razaDiv__Picture);
     botones.removeChild(razaForm__CardPlace);
@@ -338,14 +338,30 @@ let armaDiv__P = document.createElement("div");
 armaDiv__P.classList.add("col-12");
 
 let armaPar__1 = document.createElement("p");
-armaPar__1.innerHTML = "Cuándo el rey te pidio que mataras al dragón, te dio a escoger de tres poderosas armas para poder derrotarlo.  Todas son excelentes, pero cada una es especial." +
-"<br>" + 
-"¿Cuál escogiste?";
+armaPar__1.innerHTML =
+  "Cuándo el rey te pidio que mataras al dragón, te dio a escoger de tres poderosas armas para poder derrotarlo.  Todas son excelentes, pero cada una es especial." +
+  "<br>" +
+  "¿Cuál escogiste?";
 
-let armaPromptText = [ 
-  {id:1, nombre: "Espada", text: "La espada del caballero Irtan.  Fue creada de un meteorito y el corazon de un grifo.  Es el arma de un heroe.  Filosa y capaz de desviar cualquier ataque físico con destreza.", img: "images/espada.jpeg"},
-  {id:2, nombre: "Lanza", text: "El arma preferida de los cazadores de dragones.  No es muy buena para defend, pero sí es capaz de causar gran daño a los enemigos.", img: "images/lanza.jpeg"},
-  {id:3, nombre: "Bastón mágico", text: "Un arma proveniente de las islas mágicas de Elkanor, este bastón mágico, además de poder lanzar bolas de fuego desde una gran distancia, también tiene el efecto de minimizar el daño mágico contra ti.", img: "images/baston.png"}
+let armaPromptText = [
+  {
+    id: 1,
+    nombre: "Espada",
+    text: "La espada del caballero Irtan.  Fue creada de un meteorito y el corazon de un grifo.  Es el arma de un heroe.  Filosa y capaz de desviar cualquier ataque físico con destreza.",
+    img: "images/espada.jpeg",
+  },
+  {
+    id: 2,
+    nombre: "Lanza",
+    text: "El arma preferida de los cazadores de dragones.  No es muy buena para defend, pero sí es capaz de causar gran daño a los enemigos.",
+    img: "images/lanza.jpeg",
+  },
+  {
+    id: 3,
+    nombre: "Bastón mágico",
+    text: "Un arma proveniente de las islas mágicas de Elkanor, este bastón mágico, además de poder lanzar bolas de fuego desde una gran distancia, también tiene el efecto de minimizar el daño mágico contra ti.",
+    img: "images/baston.png",
+  },
 ];
 
 // Cartas para Armas
@@ -362,12 +378,16 @@ cartaEspada__Div.classList.add("card", "h-100", "text-center");
 cartaEspada__Img = document.createElement("img");
 cartaEspada__Img.classList.add("card-img-top", "card_img_top_1");
 cartaEspada__Img.style = "width:18";
-cartaEspada__Img.src = armaPromptText.filter((el) => el.id == 1).map((el) => el.img);
+cartaEspada__Img.src = armaPromptText
+  .filter((el) => el.id == 1)
+  .map((el) => el.img);
 cartaEspada__Body = document.createElement("div");
 cartaEspada__Body.classList.add("card-body", "d-flex", "flex-column");
 cartaEspada__Titulo = document.createElement("h5");
 cartaEspada__Titulo.classList.add("card-title");
-cartaEspada__Titulo.innerHTML = armaPromptText.filter((el) => el.id == 1).map((el) => el.nombre);
+cartaEspada__Titulo.innerHTML = armaPromptText
+  .filter((el) => el.id == 1)
+  .map((el) => el.nombre);
 cartaEspada__Text = document.createElement("p");
 cartaEspada__Text.classList.add("my-auto");
 cartaEspada__Text.innerHTML = armaPromptText
@@ -394,12 +414,16 @@ cartaLanza__Div = document.createElement("div");
 cartaLanza__Div.classList.add("card", "h-100", "text-center");
 cartaLanza__Img = document.createElement("img");
 cartaLanza__Img.classList.add("card-img-top", "card_img_top_1");
-cartaLanza__Img.src = armaPromptText.filter((el) => el.id == 2).map((el) => el.img);
+cartaLanza__Img.src = armaPromptText
+  .filter((el) => el.id == 2)
+  .map((el) => el.img);
 cartaLanza__Body = document.createElement("div");
 cartaLanza__Body.classList.add("card-body", "d-flex", "flex-column");
 cartaLanza__Titulo = document.createElement("h5");
 cartaLanza__Titulo.classList.add("card-title");
-cartaLanza__Titulo.innerHTML = armaPromptText.filter((el) => el.id == 2).map((el) => el.nombre);
+cartaLanza__Titulo.innerHTML = armaPromptText
+  .filter((el) => el.id == 2)
+  .map((el) => el.nombre);
 cartaLanza__Text = document.createElement("p");
 cartaLanza__Text.classList.add("my-auto");
 cartaLanza__Text.innerHTML = armaPromptText
@@ -426,12 +450,16 @@ cartaBaston__Div = document.createElement("div");
 cartaBaston__Div.classList.add("card", "h-100", "text-center");
 cartaBaston__Img = document.createElement("img");
 cartaBaston__Img.classList.add("card-img-top", "card_img_top_1");
-cartaBaston__Img.src = armaPromptText.filter((el) => el.id === 3).map((el) => el.img);
+cartaBaston__Img.src = armaPromptText
+  .filter((el) => el.id === 3)
+  .map((el) => el.img);
 cartaBaston__Body = document.createElement("div");
 cartaBaston__Body.classList.add("card-body", "d-flex", "flex-column");
 cartaBaston__Titulo = document.createElement("h5");
 cartaBaston__Titulo.classList.add("card-title");
-cartaBaston__Titulo.innerHTML = armaPromptText.filter((el) => el.id === 3).map((el) => el.nombre);
+cartaBaston__Titulo.innerHTML = armaPromptText
+  .filter((el) => el.id === 3)
+  .map((el) => el.nombre);
 cartaBaston__Text = document.createElement("p");
 cartaBaston__Text.classList.add("my-auto");
 cartaBaston__Text.innerHTML = armaPromptText
@@ -454,7 +482,6 @@ armaForm__CardPlace.appendChild(cartaEspada__Col);
 armaForm__CardPlace.appendChild(cartaLanza__Col);
 armaForm__CardPlace.appendChild(cartaBaston__Col);
 
-
 //Funcion para Arma
 
 function armaDivAppend() {
@@ -464,16 +491,14 @@ function armaDivAppend() {
   botonEspada__Function();
   botonLanza__Function();
   botonBaston__Function();
- }
+}
 
 //Funciones Botones Arma
 
 function botonEspada__Function() {
-
   let botonEspada = document.getElementById("botonEspada");
-  
-  botonEspada.onclick = () => {
 
+  botonEspada.onclick = () => {
     heroe.push("espada");
     localStorage.setItem("heroe", JSON.stringify(heroe));
     promptPlace.removeChild(armaDiv__P);
@@ -484,9 +509,8 @@ function botonEspada__Function() {
 }
 
 function botonLanza__Function() {
-
   let botonLanza = document.getElementById("botonLanza");
-  
+
   botonLanza.onclick = () => {
     heroe.push("lanza");
     localStorage.setItem("heroe", JSON.stringify(heroe));
@@ -497,11 +521,9 @@ function botonLanza__Function() {
   };
 }
 
-
 function botonBaston__Function() {
-
   let botonBaston = document.getElementById("botonBaston");
-  
+
   botonBaston.onclick = () => {
     heroe.push("baston");
     localStorage.setItem("heroe", JSON.stringify(heroe));
@@ -514,37 +536,39 @@ function botonBaston__Function() {
 
 //Constants for Retrieving Storage
 
-const heroRazaRetrieve = JSON.parse(localStorage.getItem("heroe"))[1];
-const heroArmaRetrieve = JSON.parse(localStorage.getItem("heroe"))[2];
-
-
-if (heroArmaRetrieve == "espada" || heroArmaRetrieve == "lanza" ) {
-  heroArmaRetrieve__prefijo = "la"
-} else {
-  heroArmaRetrieve__prefijo = "el"
-};
-
 function bienvenida__Heroe() {
+  const heroRazaRetrieve = JSON.parse(localStorage.getItem("heroe"))[1];
+  const heroArmaRetrieve = JSON.parse(localStorage.getItem("heroe"))[2];
+  if (heroArmaRetrieve == "espada" || heroArmaRetrieve == "lanza") {
+    heroArmaRetrieve__prefijo = "la";
+  } else {
+    heroArmaRetrieve__prefijo = "el";
+  }
 
-let bienvenidaDiv = document.createElement("div");
-bienvenidaDiv.classList.add("col-12");
-let bienvenidaDiv__Img = document.createElement("img");
-bienvenidaDiv__Img.classList.add("img-fluid");
-bienvenidaDiv__Img.src = razaPromptText.filter((el) => el.raza === heroRazaRetrieve).map((el) => el.img);
-let bienvenidaPar__1 = document.createElement("p");
-bienvenidaPar__1.innerHTML = ("Bienvenido " + heroNameRetrieve + ".  Has escogido ser un " + heroRazaRetrieve + ", y tu arma de preferencia es " + heroArmaRetrieve__prefijo + " " + heroArmaRetrieve + ".");
+  let bienvenidaDiv = document.createElement("div");
+  bienvenidaDiv.classList.add("col-12");
+  let bienvenidaDiv__Img = document.createElement("img");
+  bienvenidaDiv__Img.classList.add("img-fluid");
+  bienvenidaDiv__Img.src = razaPromptText
+    .filter((el) => el.raza === heroRazaRetrieve)
+    .map((el) => el.img);
+  let bienvenidaPar__1 = document.createElement("p");
+  bienvenidaPar__1.innerHTML =
+    "Bienvenido " +
+    heroNameRetrieve +
+    ".  Has escogido ser un " +
+    heroRazaRetrieve +
+    ", y tu arma de preferencia es " +
+    heroArmaRetrieve__prefijo +
+    " " +
+    heroArmaRetrieve +
+    ".";
 
-
-promptPlace.classList.remove("d-flex", "flex-row");
-promptPlace.appendChild(bienvenidaDiv);
-promptPlace.appendChild(bienvenidaDiv__Img);
-bienvenidaDiv.appendChild(bienvenidaPar__1);
-
+  promptPlace.classList.remove("d-flex", "flex-row");
+  promptPlace.appendChild(bienvenidaDiv);
+  promptPlace.appendChild(bienvenidaDiv__Img);
+  bienvenidaDiv.appendChild(bienvenidaPar__1);
 }
-
-
-
-
 
 // bienvenida = (valor1, valor2, valor3) => {
 //   alert(
