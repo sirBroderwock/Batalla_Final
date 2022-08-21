@@ -206,7 +206,7 @@ cartaEnano__Body = document.createElement("div");
 cartaEnano__Body.classList.add("card-body", "d-flex", "flex-column");
 cartaEnano__Text = document.createElement("p");
 cartaEnano__Text.innerHTML = razaPromptText
-  .filter((el) => el.id == 3)
+  .filter((el) => el.id == 2)
   .map((el) => el.text);
 cartaEnano__Button = document.createElement("button");
 cartaEnano__Button.classList.add(
