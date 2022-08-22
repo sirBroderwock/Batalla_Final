@@ -7,7 +7,14 @@ let botonEmpezar = document.getElementById("botonEmpezar");
 let imagenDragon1 = document.getElementById("imagenDragon1");
 let promptPlace = document.getElementById("promptPlace");
 let botones = document.getElementById("botones");
-let heroe = [];
+
+class heroeIndex {
+  constructor() {}
+}
+
+let heroe = new heroeIndex();
+let heroeStorageMain = [];
+
 //Form para nombre con botones Continuar y Reiniciar
 
 let nombreForm = document.createElement("div");
@@ -121,9 +128,11 @@ botonContinuar.addEventListener("click", () => {
     );
   } else {
     alerta__Remove();
-    heroe.push(nombreForm__Input.value);
+    heroe.nombre = nombreForm__Input.value;
     console.log(heroe);
-    let heroeStorage = JSON.stringify(heroe);
+    heroeStorageMain.push(heroe);
+    console.log(heroeStorageMain);
+    let heroeStorage = JSON.stringify(heroeStorageMain);
     localStorage.setItem("heroe", heroeStorage);
     if (document.body.contains(document.getElementById("botonReiniciar__P"))) {
       botonReiniciar__No__Remove();
@@ -157,7 +166,7 @@ let razaPromptText = [
   },
   {
     id: 2,
-    text: "Te la Te la llevas y en la siguiente aldea te compras una cerveza.",
+    text: "La recoges y en la siguiente aldea te compras un six de cerveza.",
     raza: "enano",
     img: "images/enano.jpeg",
   },
@@ -257,13 +266,16 @@ razaForm__CardPlace.appendChild(cartaEnano__Col);
 razaForm__CardPlace.appendChild(cartaHumano__Col);
 
 //Funcion para Raza
-
+function Index(el) {}
 function razaDivAppend() {
-  heroNameRetrieve = JSON.parse(localStorage.getItem("heroe"))[0];
+  heroRetrieve = JSON.parse(localStorage.getItem("heroe"));
+
+  heroNameValue = heroRetrieve[0].nombre;
+
   let razaPar__1 = document.createElement("p");
   razaPar__1.innerHTML =
     "¡Hola " +
-    heroNameRetrieve +
+    heroNameValue +
     "! <br>" +
     "Antes de empezar tu batalla contra el dragón, te haremos unas preguntas para decidir qué tipo de heroe eres.  ¿Bien?  ¡Empecemos!";
 
@@ -296,8 +308,8 @@ function botonElfo__Function() {
   botonElfo = document.getElementById("botonElfo");
 
   botonElfo.onclick = () => {
-    heroe.push("elfo");
-    localStorage.setItem("heroe", JSON.stringify(heroe));
+    heroe.raza = "elfo";
+    localStorage.setItem("heroe", JSON.stringify(heroeStorageMain));
     promptPlace.removeChild(razaDiv__P);
     promptPlace.removeChild(razaDiv__Picture);
     botones.removeChild(razaForm__CardPlace);
@@ -310,8 +322,8 @@ function botonEnano__Function() {
   let botonEnano = document.getElementById("botonEnano");
 
   botonEnano.onclick = () => {
-    heroe.push("enano");
-    localStorage.setItem("heroe", JSON.stringify(heroe));
+    heroe.raza = "enano";
+    localStorage.setItem("heroe", JSON.stringify(heroeStorageMain));
     promptPlace.removeChild(razaDiv__P);
     promptPlace.removeChild(razaDiv__Picture);
     botones.removeChild(razaForm__CardPlace);
@@ -323,8 +335,8 @@ function botonHumano__Function() {
   let botonHumano = document.getElementById("botonHumano");
 
   botonHumano.onclick = () => {
-    heroe.push("humano");
-    localStorage.setItem("heroe", JSON.stringify(heroe));
+    heroe.raza = "humano";
+    localStorage.setItem("heroe", JSON.stringify(heroeStorageMain));
     promptPlace.removeChild(razaDiv__P);
     promptPlace.removeChild(razaDiv__Picture);
     botones.removeChild(razaForm__CardPlace);
@@ -499,8 +511,8 @@ function botonEspada__Function() {
   let botonEspada = document.getElementById("botonEspada");
 
   botonEspada.onclick = () => {
-    heroe.push("espada");
-    localStorage.setItem("heroe", JSON.stringify(heroe));
+    heroe.arma = "espada";
+    localStorage.setItem("heroe", JSON.stringify(heroeStorageMain));
     promptPlace.removeChild(armaDiv__P);
     botones.removeChild(armaForm__CardPlace);
     document.getElementById("tituloPrimero").innerHTML = "¡Bienvenido!";
@@ -512,8 +524,8 @@ function botonLanza__Function() {
   let botonLanza = document.getElementById("botonLanza");
 
   botonLanza.onclick = () => {
-    heroe.push("lanza");
-    localStorage.setItem("heroe", JSON.stringify(heroe));
+    heroe.arma = "lanza";
+    localStorage.setItem("heroe", JSON.stringify(heroeStorageMain));
     promptPlace.removeChild(armaDiv__P);
     botones.removeChild(armaForm__CardPlace);
     document.getElementById("tituloPrimero").innerHTML = "¡Bienvenido!";
@@ -525,8 +537,8 @@ function botonBaston__Function() {
   let botonBaston = document.getElementById("botonBaston");
 
   botonBaston.onclick = () => {
-    heroe.push("baston");
-    localStorage.setItem("heroe", JSON.stringify(heroe));
+    heroe.arma = "baston";
+    localStorage.setItem("heroe", JSON.stringify(heroeStorageMain));
     promptPlace.removeChild(armaDiv__P);
     botones.removeChild(armaForm__CardPlace);
     document.getElementById("tituloPrimero").innerHTML = "¡Bienvenido!";
@@ -537,8 +549,12 @@ function botonBaston__Function() {
 //Constants for Retrieving Storage
 
 function bienvenida__Heroe() {
-  const heroRazaRetrieve = JSON.parse(localStorage.getItem("heroe"))[1];
-  const heroArmaRetrieve = JSON.parse(localStorage.getItem("heroe"))[2];
+  heroRetrieve = JSON.parse(localStorage.getItem("heroe"));
+
+  const heroRazaRetrieve = heroRetrieve[0].raza;
+
+  const heroArmaRetrieve = heroRetrieve[0].arma;
+
   if (heroArmaRetrieve == "espada" || heroArmaRetrieve == "lanza") {
     heroArmaRetrieve__prefijo = "la";
   } else {
@@ -555,7 +571,7 @@ function bienvenida__Heroe() {
   let bienvenidaPar__1 = document.createElement("p");
   bienvenidaPar__1.innerHTML =
     "Bienvenido " +
-    heroNameRetrieve +
+    heroNameValue +
     ".  Has escogido ser un " +
     heroRazaRetrieve +
     ", y tu arma de preferencia es " +
@@ -568,31 +584,44 @@ function bienvenida__Heroe() {
   promptPlace.appendChild(bienvenidaDiv);
   promptPlace.appendChild(bienvenidaDiv__Img);
   bienvenidaDiv.appendChild(bienvenidaPar__1);
+  valoresRaza__Juego();
+  armasJuego();
+  enemigosJuego();
+  saveElementstoLocalStorage();
+
   console.log(heroeValores);
   console.log(armaValores__Heroe);
 }
 
-// /* Objetos para crear valores de cada raza */
-
-class razaValores {
-  constructor(nombre, hitPoints, mana) {
-    this.nombre = nombre;
-    this.hitPoints = hitPoints;
-    this.mana = mana;
-  }
+function saveElementstoLocalStorage() {
+  let heroeStorage = JSON.stringify(heroeStorageMain);
+  localStorage.setItem("heroe", heroeStorage);
+  console.log(heroeStorageMain);
 }
-
-const elfoValores = new razaValores("elfo", 300, 300);
-const enanoValores = new razaValores("enano", 500, 100);
-const humanoValores = new razaValores("humano", 400, 200);
+// /* Objetos para crear valores de cada raza */
 let heroeValores;
 
-if (heroe[1] == "elfo") {
-  heroeValores = elfoValores;
-} else if (heroe[1] == "enano") {
-  heroeValores = enanoValores;
-} else {
-  heroeValores = humanoValores;
+function valoresRaza__Juego() {
+  class razaValores {
+    constructor(nombre, hitPoints, mana) {
+      this.nombre = nombre;
+      this.hitPoints = hitPoints;
+      this.mana = mana;
+    }
+  }
+
+  const elfoValores = new razaValores("elfo", 300, 300);
+  const enanoValores = new razaValores("enano", 500, 100);
+  const humanoValores = new razaValores("humano", 400, 200);
+
+  if (heroe.raza == "elfo") {
+    heroeValores = elfoValores;
+  } else if (heroe.raza == "enano") {
+    heroeValores = enanoValores;
+  } else {
+    heroeValores = humanoValores;
+  }
+  heroeStorageMain.push(heroeValores);
 }
 
 /*Funcion para random Numbers */
@@ -607,81 +636,85 @@ let defensaRandom = randomNumbers(30);
 let defensa__Magica__Random = randomNumbers(20);
 let poder__Magico__Random = randomNumbers(50);
 
-/*Objetos para armas */
-
-class armaValores {
-  constructor(nombre, fuerza, defensa, defensa__Magica) {
-    this.nombre = nombre;
-    this.fuerza = fuerza;
-    this.defensa = defensa;
-    this.defensa__Magica = defensa__Magica;
-  }
-}
-
-const espadaValores = new armaValores(
-  "espada",
-  fuerzaRandom + 18,
-  defensaRandom,
-  defensa__Magica__Random - 5
-);
-
-const lanzaValores = new armaValores(
-  "lanza",
-  fuerzaRandom + 25,
-  defensaRandom - 5,
-  defensa__Magica__Random - 8
-);
-const bastonValores = new armaValores(
-  "baston mágico",
-  fuerzaRandom + 10,
-  defensaRandom - 10,
-  defensa__Magica__Random + 25
-);
+/*Function para armas */
 
 let armaValores__Heroe;
 
-if (JSON.parse(localStorage.getItem("heroe")[2] == "espada")) {
-  armaValores__Heroe = espadaValores;
-} else if (JSON.parse(localStorage.getItem("heroe")[2] == "lanza")) {
-  armaValores__Heroe = lanzaValores;
-} else {
-  armaValores__Heroe = bastonValores;
+function armasJuego() {
+  class armaValores {
+    constructor(nombre, fuerza, defensa, defensa__Magica) {
+      this.nombre = nombre;
+      this.fuerza = fuerza;
+      this.defensa = defensa;
+      this.defensa__Magica = defensa__Magica;
+    }
+  }
+
+  const espadaValores = new armaValores(
+    "espada",
+    fuerzaRandom + 18,
+    defensaRandom,
+    defensa__Magica__Random - 5
+  );
+
+  const lanzaValores = new armaValores(
+    "lanza",
+    fuerzaRandom + 25,
+    defensaRandom - 5,
+    defensa__Magica__Random - 8
+  );
+  const bastonValores = new armaValores(
+    "baston mágico",
+    fuerzaRandom + 10,
+    defensaRandom - 10,
+    defensa__Magica__Random + 25
+  );
+
+  if (heroe.arma == "espada") {
+    armaValores__Heroe = espadaValores;
+  } else if (heroe.arma == "lanza") {
+    armaValores__Heroe = lanzaValores;
+  } else {
+    armaValores__Heroe = bastonValores;
+  }
+  heroeStorageMain.push(armaValores__Heroe);
 }
 
-// /* Objeto para enemigos y dragons */
+/* Function para enemigos y dragons */
 
-// class enemigo {
-//   constructor(
-//     nombre,
-//     hitPoints,
-//     mana,
-//     fuerza,
-//     defensa,
-//     poderMagico,
-//     defensaMagica
-//   ) {
-//     this.nombre = nombre;
-//     this.hitPoints = hitPoints;
-//     this.mana = mana;
-//     this.fuerza = fuerza;
-//     this.defensa = defensa;
-//     this.poderMagico = poderMagico;
-//     this.defensaMagica = defensaMagica;
-//   }
-// }
+function enemigosJuego() {
+  class enemigo {
+    constructor(
+      nombre,
+      hitPoints,
+      mana,
+      fuerza,
+      defensa,
+      poderMagico,
+      defensaMagica
+    ) {
+      this.nombre = nombre;
+      this.hitPoints = hitPoints;
+      this.mana = mana;
+      this.fuerza = fuerza;
+      this.defensa = defensa;
+      this.poderMagico = poderMagico;
+      this.defensaMagica = defensaMagica;
+    }
+  }
 
-// const dragon = new enemigo(
-//   "dragon",
-//   1500,
-//   800,
-//   fuerzaRandom + 30,
-//   defensaRandom + 30,
-//   poder__Magico__Random + 30,
-//   defensa__Magica__Random + 20
-// );
-
-// console.log(dragon.nombre);
-// console.log(dragon.poderMagico);
+  const dragon = new enemigo(
+    "dragon",
+    1500,
+    800,
+    fuerzaRandom + 30,
+    defensaRandom + 30,
+    poder__Magico__Random + 30,
+    defensa__Magica__Random + 20
+  );
+  console.log(dragon);
+  heroeStorageMain.push(dragon);
+}
 
 /*Tienda Mágica*/
 
