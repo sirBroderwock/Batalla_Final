@@ -71,20 +71,6 @@ botonEmpezar.onclick = () => {
 
 //Botones Reset
 
-function alert__Reload__Sweet() {
-  Swal.fire({
-    title: "¿Estas seguro de que quieres reiniciar?",
-    showCancelButton: true,
-    confirmButtonText: "Si",
-    cancelButtonText: "No",
-  }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
-    if (result.isConfirmed) {
-      reload();
-    }
-  });
-}
-
 function reload() {
   reload = location.reload();
 }
@@ -115,7 +101,20 @@ let botonReiniciar__P = document.createElement("p");
 botonReiniciar__P.innerHTML = "¿Estas seguro de que quieres empezar de nuevo?";
 botonReiniciar__P.id = "botonReiniciar__P";
 
-botonReiniciar.addEventListener("click", alert__Reload__Sweet(), false);
+botonReiniciar.addEventListener("click", () => {
+  Swal.fire({
+    title: "¿Estas seguro de que quieres reiniciar?",
+    showConfirmButton: true,
+    showCancelButton: true,
+    confirmButtonText: "Si",
+    cancelButtonText: "No",
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      reload();
+    }
+  });
+});
 
 botonReiniciar__Si.addEventListener("click", reload, false);
 
