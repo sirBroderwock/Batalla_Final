@@ -75,31 +75,7 @@ function reload() {
   reload = location.reload();
 }
 
-function botonReiniciar__Empezar() {
-  alerta.appendChild(botonReiniciar__P);
-  alerta.appendChild(botonReiniciar__Si);
-  alerta.appendChild(botonReiniciar__No);
-}
 
-function botonReiniciar__No__Remove() {
-  alerta.removeChild(botonReiniciar__P);
-  alerta.removeChild(botonReiniciar__Si);
-  alerta.removeChild(botonReiniciar__No);
-}
-
-let botonReiniciar__Si = document.createElement("button");
-botonReiniciar__Si.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
-botonReiniciar__Si.innerHTML = "Si";
-botonReiniciar__Si.id = "botonReiniciar__Si";
-
-let botonReiniciar__No = document.createElement("button");
-botonReiniciar__No.classList.add("btn", "btn-secondary", "btn-large", "mx-3");
-botonReiniciar__No.innerHTML = "No";
-botonReiniciar__No.id = "botonReiniciar__No";
-
-let botonReiniciar__P = document.createElement("p");
-botonReiniciar__P.innerHTML = "¿Estas seguro de que quieres empezar de nuevo?";
-botonReiniciar__P.id = "botonReiniciar__P";
 
 botonReiniciar.addEventListener("click", () => {
   Swal.fire({
@@ -116,11 +92,6 @@ botonReiniciar.addEventListener("click", () => {
   });
 });
 
-botonReiniciar__Si.addEventListener("click", reload, false);
-
-botonReiniciar__No.onclick = () => {
-  botonReiniciar__No__Remove();
-};
 
 function alerta__Remove() {
   alerta__p.innerHTML = "";
