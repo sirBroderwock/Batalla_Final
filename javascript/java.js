@@ -75,8 +75,6 @@ function reload() {
   reload = location.reload();
 }
 
-
-
 botonReiniciar.addEventListener("click", () => {
   Swal.fire({
     title: "¿Estas seguro de que quieres reiniciar?",
@@ -92,7 +90,6 @@ botonReiniciar.addEventListener("click", () => {
   });
 });
 
-
 function alerta__Remove() {
   alerta__p.innerHTML = "";
   alerta__p.classList.remove("alerta__colores");
@@ -102,16 +99,20 @@ function alerta__Remove() {
 
 botonContinuar.addEventListener("click", () => {
   if (nombreForm__Input.value == "") {
-    alerta__p.innerHTML = "Porfavor ingresa tu nombre";
-    alerta__p.classList.add(
-      "mx-auto",
-      "alerta__colores",
-      "mt-3",
-      "p-3",
-      "text-center"
-    );
+    // alerta__p.innerHTML = "Porfavor ingresa tu nombre";
+    // alerta__p.classList.add(
+    //   "mx-auto",
+    //   "alerta__colores",
+    //   "mt-3",
+    //   "p-3",
+    //   "text-center"
+    // );
+    Swal.fire({
+      icon: "error",
+      text: "¡Por favor ingresa un nombre!",
+    });
   } else {
-    alerta__Remove();
+    // alerta__Remove();
     heroe.nombre = nombreForm__Input.value;
     console.log(heroe);
     heroeStorageMain.push(heroe);
