@@ -565,10 +565,15 @@ function bienvenida__Heroe() {
     heroArmaRetrieve +
     ".";
 
+  let bienvenidaPar__2 = document.createElement("p");
+  bienvenidaPar__2.innerHTML =
+    "Tu enemigo para esta batalla, es un " + randomMonsterName + ".";
+
   promptPlace.classList.remove("d-flex", "flex-row");
   promptPlace.appendChild(bienvenidaDiv);
   promptPlace.appendChild(bienvenidaDiv__Img);
   bienvenidaDiv.appendChild(bienvenidaPar__1);
+  bienvenidaDiv.appendChild(bienvenidaPar__2);
   valoresRaza__Juego();
   armasJuego();
   enemigosJuego();
@@ -664,6 +669,30 @@ function armasJuego() {
   }
   heroeStorageMain.push(armaValores__Heroe);
 }
+
+/*  Fetch a DnD */
+let monsters;
+
+fetch("https://api.open5e.com/monsters/?search=dragon")
+  .then((resp) => resp.json())
+  .then((data) => {
+    monsters = data.results;
+
+    localStorage.setItem("monsters", JSON.stringify(monsters));
+  });
+
+monsterRetrieve = JSON.parse(localStorage.getItem("monsters"));
+console.log(monsterRetrieve);
+
+randomMonster__Math = Math.floor(Math.random() * monsterRetrieve.length);
+
+let randomMonster = monsterRetrieve[randomMonster__Math];
+
+console.log(randomMonster);
+
+let randomMonsterName = randomMonster.name;
+
+console.log(randomMonsterName);
 
 /* Function para enemigos y dragons */
 
