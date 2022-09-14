@@ -75,6 +75,12 @@ function reload() {
   reload = location.reload();
 }
 
+Otra__Vez = document.getElementById("Otra__Vez");
+
+Otra__Vez.addEventListener("click", () => {
+  reload();
+});
+
 botonReiniciar.addEventListener("click", () => {
   Swal.fire({
     title: "¿Estas seguro de que quieres reiniciar?",
